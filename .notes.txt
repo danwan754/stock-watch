@@ -1,0 +1,2 @@
+// Accses mysql
+mysql --user=root --password='password'

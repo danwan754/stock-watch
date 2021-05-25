@@ -1,0 +1,39 @@
+// create database
+CREATE DATABASE stock_tracker;
+
+
+// create user table
+CREATE TABLE Users (
+    id SMALLINT UNSIGNED AUTO_INCREMENT,
+    username VARCHAR(30) NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+// create stock table
+CREATE TABLE Stocks (
+    id SMALLINT UNSIGNED AUTO_INCREMENT,
+    ticker VARCHAR(8) NOT NULL,
+    company VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+// create list table; list of tickers
+CREATE TABLE Lists (
+    id SMALLINT UNSIGNED AUTO_INCREMENT,
+    user_id SMALLINT UNSIGNED,
+    list_name VARCHAR(20),
+    list JSON,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES Users(id)
+);
+
+
+
+// insert into Users
+INSERT INTO USERS (username, password) VALUES (<username>, <password>);
+
+// insert into Lists
+INSERT INTO LISTS (user_id, list_name, list) VALUES (<user_id>, <list_name>, <[list]>);
