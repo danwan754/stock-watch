@@ -1,2 +1,5 @@
-// Accses mysql
+// start mysql service
+sudo service mysql start
+
+// open mysql prompt
 mysql --user=root --password='password'
