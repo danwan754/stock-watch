@@ -1,5 +1,6 @@
 export const db = {
     host: "localhost",
     user: "root",
-    password: "<password>"
+    password: "<password>",
+    database: "<database_name>"
 };
