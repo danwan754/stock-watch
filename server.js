@@ -10,7 +10,7 @@ app.use('/api', stockRouter);
 
 
 app.listen(process.env.PORT || 5000, () => {
-  console.log('Resource server started http://localhost:5000');
+  console.log('Resource server running at http://localhost:5000');
 });
 
 
