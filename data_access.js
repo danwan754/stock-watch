@@ -18,6 +18,7 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
+// returns user id of inserted user
 export const insertUser = user => {
     let sql = 'INSERT INTO Users (username, password) VALUES (?, ?);';
     return new Promise((resolve, reject) => 
@@ -29,7 +30,7 @@ export const insertUser = user => {
     );
 }
 
-// returns user object or null if user does not exist
+// returns a non-empty user object or null if user does not exist
 export const getUser = username => {
     let sql = 'SELECT * FROM Users WHERE username=?;';
     return new Promise((resolve, reject) =>
