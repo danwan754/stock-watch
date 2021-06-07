@@ -3,7 +3,7 @@ Dotenv.config();
 
 import Mysql from 'mysql';
 
-import { db } from './.config.js';
+import { db } from './config.js';
 
 // connect to db
 let con = Mysql.createConnection({
