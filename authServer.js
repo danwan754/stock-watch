@@ -45,18 +45,22 @@ app.post('/login', async (req, res) => {
     }
 
     const user = await getUser(username);
-    const validPassword = await Bcrypt.compare(password, user.password);
-    if (validPassword) {
-        const accessToken = generateAccessToken({ id: user.id });
-        const refreshToken = Jwt.sign({ id: user.id }, process.env.REFRESH_TOKEN_SECRET);
-        res.setHeader('Set-Cookie', Cookie.serialize('refreshToken', refreshToken, {
-            // httpOnly: true,
-            // secure: true,
-            maxAge: 60 * 60 * 24 * 7 * 52 // 1 year
-        }));
-        res.json({ accessToken });
+    if (user) {
+        const validPassword = await Bcrypt.compare(password, user.password);
+        if (validPassword) {
+            const accessToken = generateAccessToken({ id: user.id });
+            const refreshToken = Jwt.sign({ id: user.id }, process.env.REFRESH_TOKEN_SECRET);
+            res.setHeader('Set-Cookie', Cookie.serialize('refreshToken', refreshToken, {
+                // httpOnly: true,
+                // secure: true,
+                maxAge: 60 * 60 * 24 * 7 * 52 // 1 year
+            }));
+            res.json({ accessToken });
+        } else {
+            res.status(400).json({ message: "Invalid login credentials."});
+        }
     } else {
-        res.status(400).json({ message: "Invalid login credentials."});
+        res.status(404).json({ message: "User: " + username + " does not exist. Please register an account." });
     }
 });
 
