@@ -22,7 +22,7 @@ export const insertUser = user => {
     return new Promise((resolve, reject) => 
         con.query(sql, [user.username, user.password], (err, result) => {
             if (err) throw err;
-            console.log("Inserted new user: " + user.username + "; id: " + result.insertId);
+            // console.log("Inserted new user: " + user.username + "; id: " + result.insertId);
             resolve(result.insertId);
         })
     );
@@ -35,12 +35,50 @@ export const getUser = username => {
         con.query(sql, [username], (err, result) => {
             if (err) throw err;
             if (result.length > 0) {
-                console.log("Fetched user: ");
-                console.log(result);
+                // console.log("Fetched user: ");
+                // console.log(result);
                 resolve(JSON.parse(JSON.stringify(result[0])));
             } else {
                 resolve(null);
             }
         })
     );
+}
+
+// return list of stocklist objects or null if nothing found
+export const getLists = user_id => {
+    let sql = "SELECT list_name, list FROM Users INNER JOIN Lists ON Users.id = Lists.user_id WHERE Users.id = ?";
+    return new Promise((resolve, reject) => {
+        con.query(sql, [user_id], (err, result) => {
+            if (err) throw err;
+            if (result.length > 0) {
+                resolve(JSON.parse(JSON.stringify(result)));
+            } else {
+                resolve(null);
+            }
+        })
+    });
+}
+
+// return id of inserted list
+export const insertList = (user_id, list_name) => {
+    let sql = "INSERT INTO Lists (user_id, list_name, list) VALUES (?, ?, JSON_ARRAY())";
+    return new Promise((resolve, reject) => {
+        con.query(sql, [user_id, list_name], (err, result) => {
+            if (err) throw err;
+            console.log("inserted new list; id=" + result.insertId);
+            resolve(result.insertId);
+        });
+    });
+}
+
+// return list ID and ticker
+export const addTicker = (list_id, ticker) => {
+    let sql = "UPDATE Lists SET list = JSON_ARRAY_APPEND(list, '$', ?) WHERE id = ?";
+    return new Promise((resolve, reject) => {
+        con.query(sql, [ticker, list_id], (err, result) => {
+            if (err) throw err;
+            resolve(result);
+        })
+    })
 }
