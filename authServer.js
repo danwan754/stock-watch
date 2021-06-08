@@ -1,3 +1,6 @@
+import Dotenv from 'dotenv';
+Dotenv.config();
+
 import Express from 'express';
 import Jwt from 'jsonwebtoken';
 import Bcrypt from 'bcrypt';
@@ -83,7 +86,7 @@ app.post('/token', (req, res) => {
 
 
 function generateAccessToken(user) {
-    return Jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '300s' });
+    return Jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRE_TIME });
   }
 
 app.listen(4000, () => {
