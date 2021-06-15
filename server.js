@@ -11,7 +11,7 @@ const app = Express();
 
 app.use(Express.json());
 
-app.use('/api', stockRouter);
+app.use('/stock', stockRouter);
 app.use('/user', authenticateToken, userRouter);
 
 function authenticateToken(req, res, next) {

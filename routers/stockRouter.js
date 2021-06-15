@@ -1,20 +1,44 @@
 import Express from 'express';
+import Axios from 'axios';
+
+import url from '../url.js';
 
 let router = Express.Router();
 
-// test return a symbol
-router.get('/symbol', (req, res) => {
-    res.json({symbol: 'appl'});
+// get quote
+router.get('/:ticker/quote', (req, res) => {
+    const ticker = hasTicker(req.params.ticker);
+    Axios.get(url.quote(ticker))
+    .then(response => {
+        res.status(200).json(response.data);
+    })
+    .catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+    })
 });
 
-// get stock price
-router.get('/aapl/price', (req, res) => {
-    res.json({price: 129.56});
-});
+// get company info
+router.get('/:ticker/company', (req, res) => {
+    const ticker = hasTicker(req.params.ticker);
+    Axios.get(url.company(ticker))
+    .then(response => {
+        res.status(200).json(response.data);
+    })
+    .catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+    });
+})
 
-// get company name
-router.get('/aapl/company', (req, res) => {
-    res.json({company: "Apple, Inc."});
-});
+
+const hasTicker = (ticker, res) => {
+    if (!ticker) {
+        res.status(401).json({ error: "Missing ticker parameter." });
+    } else {
+        return ticker;
+    }
+}
+
 
 export default router;
