@@ -1,3 +1,5 @@
+@import './css/screens/QuoteScreen.css';
+@import './css/components/Loader.css';
 
 * {
   box-sizing: border-box;

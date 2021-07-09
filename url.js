@@ -3,19 +3,35 @@ Dotenv.config();
 
 const KEY = process.env.IEX_API_KEY;
 
-const company = (ticker) => {
+const companyURL = (ticker) => {
     return `https://cloud.iexapis.com/stable/stock/${ticker}/company?token=${KEY}`;
 }
 
-const quote = (ticker) => {
+const quoteURL = (ticker) => {
     return `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=${KEY}`;
 }
 
-
-export default {
-    company,
-    quote
+const companiesURL = () => {
+    return `https://cloud.iexapis.com/stable/ref-data/symbols?token=${KEY}`;
 }
 
+const logoURL = (ticker) => {
+    return `https://cloud.iexapis.com/stable/stock/${ticker}/logo?token=${KEY}`;
+}
 
-// console.log(company('aapl'));
+const newsURL = (ticker) => {
+    return `https://cloud.iexapis.com/stable/stock/${ticker}/news/last/5?token=${KEY}`;
+}
+
+const yahooNewsURL = (ticker) => {
+    return `https://feeds.finance.yahoo.com/rss/2.0/headline?s=${ticker}`;
+}
+
+export default {
+    companyURL,
+    quoteURL,
+    companiesURL,
+    logoURL,
+    newsURL,
+    yahooNewsURL
+}

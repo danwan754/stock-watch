@@ -14,8 +14,8 @@ CREATE TABLE Users (
 // create stock table
 CREATE TABLE Stocks (
     id SMALLINT UNSIGNED AUTO_INCREMENT,
-    ticker VARCHAR(8) NOT NULL,
-    company VARCHAR(50) NOT NULL,
+    ticker VARCHAR(10) NOT NULL,
+    company VARCHAR(200) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -37,3 +37,6 @@ INSERT INTO USERS (username, password) VALUES (<username>, <password>);
 
 // insert into Lists
 INSERT INTO LISTS (user_id, list_name, list) VALUES (<user_id>, <list_name>, <[list]>);
+
+// insert into Stocks
+INSERT INTO Stocks (ticker, company) VALUES (<ticker>, <company>);

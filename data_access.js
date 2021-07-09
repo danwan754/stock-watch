@@ -104,3 +104,23 @@ export const deleteList = (list_id, user_id) => {
         });
     });
 }
+
+export const insertCompany = (ticker, company) => {
+    let sql = "INSERT INTO Stocks (ticker, company) VALUES (?,?)";
+    return new Promise((resolve) => {
+        con.query(sql, [ticker, company], (err, result) => {
+            if (err) throw err;
+            resolve(result);
+        });
+    });
+}
+
+export const getCompanies = () => {
+    let sql = "SELECT ticker, company FROM Stocks";
+    return new Promise((resolve) => {
+        con.query(sql, [], (err, result) => {
+            if (err) throw err;
+            resolve(result);
+        });
+    });
+}

@@ -1,0 +1,40 @@
+.quote-news-container {
+    padding: .5em;
+    overflow: hidden;
+    border-radius: 5px;
+    /* border: 1px solid black; */
+}
+
+.quote-news-container img {
+    float: left;
+    margin: 0 1em .5em 0;
+    object-fit: contain;
+    width: 150px;
+    /* border-radius: 8px;
+    border: solid .5px gray; */
+}
+.quote-news-container a {
+    text-decoration: none;
+    color: rgb(71, 24, 71);
+    display: block;
+    position: relative;
+    overflow: hidden;
+    padding: .5em;
+    border-radius: 8px;
+    border: .1px black solid;
+}
+.quote-news-container a:hover {
+    background-color:rgb(235, 235, 250);
+}
+.quote-news-container p {
+    position: relative;
+    font-size: .9em;
+    height: 100%;
+    /* border: solid black 1px; */
+}
+.news-source {
+    position: absolute;
+    font-size: .8em;
+    right: 10px;
+    bottom: 5px;
+}

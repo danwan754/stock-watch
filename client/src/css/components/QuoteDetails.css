@@ -1,0 +1,38 @@
+.company-heading-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* border: 1px black solid; */
+}
+.company-heading-container img {
+    object-fit: contain;
+    width: 100px;
+}
+.company-heading-details {
+    margin-left: 20px;
+    font-weight: 800;
+    font-size: 1.4em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.latestPrice{
+    color:rgb(59, 120, 211)
+}
+.negative-color{
+    color: #ff1a1a;
+}
+.positive-color{
+    color: rgb(22, 145, 22);
+}
+
+.company-main-container {
+    display: flex;
+}
+.company-main-container table {
+    border-collapse: separate;
+    border-spacing: 1em .75em;
+    margin: .5em;
+}
+.company-main-container td:nth-child(1) {
+    font-weight: 600;
+}

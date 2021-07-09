@@ -1,0 +1,56 @@
+@import '../components/SuggestionList.css';
+@import '../components/QuoteDetails.css';
+@import '../components/QuoteNews.css';
+
+.quote-screen-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2em 7em 2em 7em;
+    width: 100%;
+    height: 100%;
+    /* border: 3px black solid; */
+}
+
+.search-bar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    /* border: red 1px solid; */
+}
+.search-input-container {
+    width: 100%;
+    /* border: blue solid 2px; */
+}
+.search-input-and-reset-container {
+    display: flex;
+}
+.searchInput{
+    flex-grow: 1;
+    height: 2em;
+    font-size: 1.2em;
+}
+.searchInput-reset {
+    width: 3em;
+}
+.search-bar-container label {
+    display: block;
+    margin: 0 0 .5rem 0;
+    /* border: 3px purple solid; */
+}
+
+.tickerAndCompany {
+    padding: .15em;
+}
+.tickerAndCompany:hover {
+    background-color: #cce6ff;
+}
+.tickerAndCompany:active {
+    background-color: #b3daff;
+}
+
+.quote-results-wrapper {
+    margin: 1em;
+}
+
+
