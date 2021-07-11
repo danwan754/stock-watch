@@ -5,22 +5,24 @@ export const loginReducer = (state, action) => {
         case LOGIN_LOADING_REQUEST:
             return {
                 ...state,
-                loading: true
-            }
+                loading: true,
+                error: null
+            };
 
         case LOGIN_LOADING_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                jwtoken: action.payload
-            }
+                jwtoken: action.payload,
+                error: null
+            };
 
         case LOGIN_LOADING_FAIL:
             return {
                 ...state,
                 loading: false,
                 error: action.error
-            }
+            };
         default:
             throw new Error();
     }
