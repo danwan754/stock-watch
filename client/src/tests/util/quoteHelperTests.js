@@ -1,4 +1,4 @@
-import { searchOccurrences } from "../util/quoteHelper.js";
+import { searchOccurrences } from "../../util/quoteHelper.js";
 
 const testSearchOccurences = () => {
     const source = [

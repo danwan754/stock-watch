@@ -3,6 +3,7 @@ import HomeScreen from './screens/HomeScreen';
 import QuoteScreen from './screens/QuoteScreen';
 import TopPickScreen from './screens/TopPickScreen';
 import SignInScreen from './screens/SignInScreen';
+import ListsScreen from './screens/ListsScreen';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           </div>
           <div className="header-links">
             <Link to="/quote">Quote</Link>
+            <Link to="/lists">Watch-Lists</Link>
             <Link to="/top">Top-Picks</Link>
             <Link to="/signin">Sign-In</Link>
           </div>
@@ -24,6 +26,7 @@ function App() {
             <Route path="/" exact component={HomeScreen} />
             <Route path="/quote" component={QuoteScreen} />
             <Route path="/top" component={TopPickScreen} />
+            <Route path="/lists" component={ListsScreen} />
             <Route path="/signin" component={SignInScreen} />
           </div>
         </main>

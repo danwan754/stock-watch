@@ -25,7 +25,7 @@ function SignInScreen(props) {
         e.preventDefault();
         loginDispatch({ type: LOGIN_LOADING_REQUEST });
         Axios.post('/auth/login', {
-            email,
+            username: email,
             password
         })
         .then(res => {
