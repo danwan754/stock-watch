@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../css/components/QuoteNews.css';
+
 function QuoteNews(props) {
 
     const { news } = props;

@@ -1,0 +1,55 @@
+
+
+.list-container {
+    list-style: none;
+    width: 350px;
+    padding: .75em 0 .75em 0;
+    border-radius: 7px;
+    /* border: 1px rgb(57, 129, 197) solid; */
+    box-shadow: 0 0 .2em;
+}
+.list-container li {
+    /* border: 1px blue solid; */
+    font-weight: 600;
+    font-size: .9em;
+}
+.list-container li:first-child {
+    padding: .5em 1em .5em 1em;
+    margin: 0;
+    font-size: 1.1em;
+}
+.list-container li * {
+    pointer-events: none;
+}
+.list-container li > span:first-child {
+    padding-left: 1em;
+}
+.list-container li > span:nth-child(2) {
+    padding-right: 1em;
+}
+.list-container li:nth-child(n+2) {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5em 0 1em 0;
+}
+/* .list-container a, a:focus {
+    text-decoration: none;
+    color: inherit;
+} */
+.list-container li:nth-child(n+2):hover {
+    background-color: rgb(222, 234, 245);
+}
+.list-container li:nth-child(n+2):active {
+    background-color: rgb(205, 220, 233);
+}
+
+.list-title {
+    font-weight: 600;
+}
+
+.price-current {
+    color: rgb(34, 64, 163);
+}
+.price-change {
+    font-size: .9em;
+}

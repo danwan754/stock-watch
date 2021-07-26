@@ -11,6 +11,10 @@ const quoteURL = (ticker) => {
     return `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=${KEY}`;
 }
 
+const batchQuoteURL = (tickers) => {
+    return `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickers}&types=quote&token=${KEY}`;
+}
+
 const companiesURL = () => {
     return `https://cloud.iexapis.com/stable/ref-data/symbols?token=${KEY}`;
 }
@@ -30,6 +34,7 @@ const yahooNewsURL = (ticker) => {
 export default {
     companyURL,
     quoteURL,
+    batchQuoteURL,
     companiesURL,
     logoURL,
     newsURL,

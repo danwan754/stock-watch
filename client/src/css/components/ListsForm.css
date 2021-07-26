@@ -1,0 +1,53 @@
+.lists-form-container {
+    position: relative;
+}
+
+
+.lists-form-loader-wrapper {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    /* border: 1px solid black; */
+    background-color: rgb(240, 228, 228, 0.3);
+}
+
+#addToListForm {
+    padding: .5em;
+}
+.lists-form-item {
+    padding: .15em
+}
+
+.lists-form-save-container {
+    display: flex;
+    padding-top: .5em;
+}
+.lists-form-save-container input {
+    border-radius: 7px;
+    padding: .5em;
+    /* border: 1px solid black; */
+    border: none;
+    background-color: rgb(215, 226, 243);
+}
+.lists-form-save-container input:hover {
+    background-color: rgb(176, 203, 243);
+}
+.lists-form-save-container input:active {
+    background-color: rgb(133, 173, 233);
+}
+
+.lists-form-save-container img {
+    width: 25px;
+    object-fit: contain;
+    margin-left: .5em;
+}
+.show-mark {
+    display: block;
+}
+.hide-mark {
+    display: none;
+}

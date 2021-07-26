@@ -1,10 +1,12 @@
 import React from 'react';
 
-function Loader(props) {
+import '../css/components/Loader.css';
 
+function Loader(props) {
+    const loaderSize = props.mini ? 'mini' : 'max';
     return (
         <div className="loader-container">
-            <div className="loader">
+            <div className={`loader ${loaderSize}`} >
             </div>
         </div>
     )

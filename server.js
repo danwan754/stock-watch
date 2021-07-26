@@ -6,6 +6,7 @@ import Jwt from 'jsonwebtoken';
 
 import stockRouter from './routers/stockRouter.js';
 import userRouter from './routers/userRouter.js';
+import authRouter from './routers/authRouter.js';
 
 const app = Express();
 
@@ -13,6 +14,7 @@ app.use(Express.json());
 
 app.use('/stock', stockRouter);
 app.use('/user', authenticateToken, userRouter);
+app.use('/auth', authRouter);
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];

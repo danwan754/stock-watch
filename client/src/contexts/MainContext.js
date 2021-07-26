@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 import { companiesReducer } from "../reducers/companiesReducer";
+import { companyReducer } from "../reducers/companyReducer";
 import { listsReducer } from "../reducers/listsReducer";
 import { loginReducer } from "../reducers/loginReducer";
 
@@ -14,7 +15,8 @@ const companiesInitialState = {
 
 const loginInitialState = {
     loading: false,
-    jwtoken: '',
+    // jwtoken: '',
+    jwtoken: "",
     error: null
 }
 
@@ -24,10 +26,19 @@ const listsInitialState = {
     error: null
 }
 
+const companyInitialState = {
+    loading: false,
+    company: '',
+    companyObj: {},
+    news: [],
+    error: null
+}
+
 export const MainContextProvider = props => {
     const [companiesState, companiesDispatch] = useReducer(companiesReducer, companiesInitialState);
     const [loginState, loginDispatch] = useReducer(loginReducer, loginInitialState);
     const [listsState, listsDispatch] = useReducer(listsReducer, listsInitialState);
+    const [companyState, companyDispatch] = useReducer(companyReducer, companyInitialState);
 
     return (
         <MainContext.Provider value={
@@ -37,7 +48,9 @@ export const MainContextProvider = props => {
                 loginState,
                 loginDispatch,
                 listsState,
-                listsDispatch
+                listsDispatch,
+                companyState,
+                companyDispatch
             }
         }>
             {props.children}

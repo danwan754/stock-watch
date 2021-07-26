@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../css/components/SuggestionList.css';
+
 function SuggestionList(props) {
 
     const { companies, handleSelect } = props; 

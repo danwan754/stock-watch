@@ -1,0 +1,23 @@
+
+.lists-screen {
+    /* position: relative; */
+    padding: 1em 3em 1em 3em;
+}
+
+.lists-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.loader-wrapper {
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    border: 1px solid black;
+    background-color: rgb(240, 228, 228, 0.3);
+}

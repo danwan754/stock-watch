@@ -6,14 +6,11 @@ import Jwt from 'jsonwebtoken';
 import Bcrypt from 'bcrypt';
 import Cookie from 'cookie';
 
-import { insertUser, getUser } from './data_access.js';
+import { insertUser, getUser } from '../data_access.js';
 
-const app = Express();
+const router = Express.Router();
 
-app.use(Express.json());
-app.use(Express.urlencoded());
-
-app.post('/auth/register', async (req, res) => {
+router.post('/register', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
@@ -40,7 +37,7 @@ app.post('/auth/register', async (req, res) => {
     }
 });
 
-app.post('/auth/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     if (!(username && password)) {
@@ -67,14 +64,14 @@ app.post('/auth/login', async (req, res) => {
     }
 });
 
-app.post('/auth/logout', (req, res) => {
+router.post('/logout', (req, res) => {
     res.setHeader('Set-Cookie', Cookie.serialize('refreshToken', '#deleted#', {
         expires: new Date()
     }));
     res.sendStatus(204);
 });
 
-app.post('/auth/token', (req, res) => {
+router.post('/token', (req, res) => {
     const refreshToken = req.body.token;
     if (refreshToken == null) return res.sendStatus(401)
     Jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
@@ -89,7 +86,5 @@ function generateAccessToken(user) {
     return Jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRE_TIME });
   }
 
-app.listen(4000, () => {
-    console.log("Auth server running at http://localhost:4000");
-});
+export default router;
 

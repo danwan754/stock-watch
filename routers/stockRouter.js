@@ -23,6 +23,7 @@ router.get('/:ticker/quote', (req, res) => {
     const ticker = hasTicker(req.params.ticker);
     Axios.get(url.quoteURL(ticker))
     .then(response => {
+        // console.log(response.data.companyName);
         res.status(200).json(response.data);
     })
     .catch(err => {
@@ -81,6 +82,7 @@ router.get('/:ticker/news/yahoo', (req, res) => {
         const parser = new Xml2js.Parser();
         const data = parser.parseString(response.data, (err, result) => {
             // console.log(result.rss.channel[0].item);
+            // console.log(result.rss.channel);
             res.status(200).json(cleanYahooNewsArray(result.rss.channel[0].item));
         });
     })

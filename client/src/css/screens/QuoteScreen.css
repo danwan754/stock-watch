@@ -1,6 +1,3 @@
-@import '../components/SuggestionList.css';
-@import '../components/QuoteDetails.css';
-@import '../components/QuoteNews.css';
 
 .quote-screen-container {
     display: flex;

@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Axios from 'axios';
 
 import Loader from '../components/Loader';
 import { MainContext } from '../contexts/MainContext';
 import { LOGIN_LOADING_FAIL, LOGIN_LOADING_REQUEST, LOGIN_LOADING_SUCCESS } from '../constants/loginConstants';
+import '../css/screens/SignInScreen.css';
 
 
 function SignInScreen(props) {
@@ -31,14 +32,14 @@ function SignInScreen(props) {
         .then(res => {
             if (!res.data.error) {
                 // redirect to watch lists
-
-                loginDispatch({ type: LOGIN_LOADING_SUCCESS });
+                console.log(res.data);
+                loginDispatch({ type: LOGIN_LOADING_SUCCESS, payload: res.data.accessToken });
             } else {
                 loginDispatch({ type: LOGIN_LOADING_FAIL, error: res.data.error });
             }
         })
         .catch(err => {
-            loginDispatch({ type: LOGIN_LOADING_FAIL, error: err.message });
+            loginDispatch({ type: LOGIN_LOADING_FAIL, error: err.response.data.error || err.message });
         });
     }
 

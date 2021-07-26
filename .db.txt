@@ -23,9 +23,9 @@ CREATE TABLE Stocks (
 // create list table; list of tickers
 CREATE TABLE Lists (
     id SMALLINT UNSIGNED AUTO_INCREMENT,
-    user_id SMALLINT UNSIGNED,
+    user_id SMALLINT UNSIGNED NOT NULL,
     list_name VARCHAR(20),
-    list JSON,
+    list JSON NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );

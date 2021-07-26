@@ -47,11 +47,14 @@ export const getUser = username => {
 
 // return list of stocklist objects or null if nothing found
 export const getLists = user_id => {
-    let sql = "SELECT list_name, list FROM Users INNER JOIN Lists ON Users.id = Lists.user_id WHERE Users.id = ?";
+    let sql = "SELECT Lists.id, list_name, list FROM Users INNER JOIN Lists ON Users.id = Lists.user_id WHERE Users.id = ?";
     return new Promise((resolve, reject) => {
         con.query(sql, [user_id], (err, result) => {
             if (err) throw err;
             if (result.length > 0) {
+                result.forEach(row => {
+                    row.list = JSON.parse(row.list);
+                });
                 resolve(JSON.parse(JSON.stringify(result)));
             } else {
                 resolve(null);

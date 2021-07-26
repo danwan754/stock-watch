@@ -1,16 +1,11 @@
 import React from 'react';
 
+import { formatNum } from '../util/quoteHelper';
+import '../css/components/QuoteDetails.css';
+
 function QuoteDetails(props) {
 
     const { company } = props;
-    const intNumFt = new Intl.NumberFormat('en-US')
-
-    const formatNum = (num) => {
-        if (num == null) {
-            return 'N/A';
-        }
-        return intNumFt.format(num.toFixed(2));
-    }
 
     return (
         <div className="result-container">
