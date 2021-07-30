@@ -5,46 +5,90 @@
     width: 350px;
     padding: .75em 0 .75em 0;
     border-radius: 7px;
-    /* border: 1px rgb(57, 129, 197) solid; */
     box-shadow: 0 0 .2em;
 }
 .list-container li {
-    /* border: 1px blue solid; */
     font-weight: 600;
     font-size: .9em;
 }
-.list-container li:first-child {
-    padding: .5em 1em .5em 1em;
+.list-title {
+    padding: .5em;
+    /* padding: 0; */
     margin: 0;
     font-size: 1.1em;
 }
-.list-container li * {
+
+.no-pointer-events * {
     pointer-events: none;
 }
+
 .list-container li > span:first-child {
     padding-left: 1em;
 }
 .list-container li > span:nth-child(2) {
     padding-right: 1em;
 }
-.list-container li:nth-child(n+2) {
+.list-item {
     display: flex;
     justify-content: space-between;
     padding: 1.5em 0 1em 0;
+    align-items: center;
 }
-/* .list-container a, a:focus {
-    text-decoration: none;
-    color: inherit;
-} */
-.list-container li:nth-child(n+2):hover {
+.list-item:hover {
     background-color: rgb(222, 234, 245);
 }
-.list-container li:nth-child(n+2):active {
+.list-item:active {
     background-color: rgb(205, 220, 233);
+}
+.list-item input {
+    margin: 0 1em 0 1em;
 }
 
 .list-title {
+    display: flex;
+    justify-content: space-between;
     font-weight: 600;
+    /* border: 1px red solid; */
+}
+.list-title-edit {
+    text-align: center;
+}
+.list-title-edit input:first-child {
+    margin: .5em;
+    width: 92%;
+    height: 2em;
+    font-weight: 600;
+    font-size: 1em;
+}
+.list-edit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .1em 1em .5em 1em;
+}
+.list-edit-header > input {
+    height: 2em;
+    /* padding: .em; */
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(208, 221, 240);
+}
+.list-edit-header > input:hover {
+    background-color: rgb(174, 193, 226);
+}
+.list-edit-header > input:active {
+    background-color: rgb(223, 226, 230);
+}
+
+.list-edit-header img {
+    object-fit: contain;
+}
+.pointer-events-on {
+    pointer-events: all;
+    cursor: pointer;
+}
+.list-title > span:first-child{
+    /* border: 1px blue solid; */
 }
 
 .price-current {

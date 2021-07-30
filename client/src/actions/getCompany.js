@@ -4,13 +4,13 @@ import { getCompanyInfo, getCompanyLogo, getCompanyNews } from "./company";
 
 export const getCompany = (dispatch, ticker) => {
     dispatch({ type: COMPANY_LOADING_REQUEST});
-    Promise.all([getCompanyInfo(ticker), getCompanyLogo(ticker), getCompanyNews(ticker)])
+    Promise.allSettled([getCompanyInfo(ticker), getCompanyLogo(ticker), getCompanyNews(ticker)])
     .then(values => {
         let companyObj = {
-            ...values[0], 
-            logoURL: values[1].url
+            ...values[0].value || null, 
+            logoURL: values[1].value.url || null
         };
-        dispatch({ type: COMPANY_LOADING_SUCCESS, payload: { companyObj, news: values[2] }});
+        dispatch({ type: COMPANY_LOADING_SUCCESS, payload: { companyObj, news: values[2].value || [] }});
     })
     .catch(err => {
         dispatch({ type: COMPANY_LOADING_FAIL, error: err.message });

@@ -1,4 +1,7 @@
 const cleanYahooNewsArray = (arr) => {
+    if (!Array.isArray(arr)) {
+        return [];
+    }
     return arr.map(item => (
         {
             description: item.description[0],

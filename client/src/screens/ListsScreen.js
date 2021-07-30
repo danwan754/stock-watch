@@ -8,6 +8,7 @@ import QuoteModal from '../components/QuoteModal';
 import Loader from '../components/Loader';
 import QuoteSearch from '../components/QuoteSearch';
 import '../css/screens/ListsScreen.css';
+import { LoginContext } from '../contexts/LoginContext';
 
 function ListsScreen(props) {
 
@@ -15,9 +16,9 @@ function ListsScreen(props) {
         listsState, 
         listsDispatch, 
         companiesState, 
-        loginState, 
         companyState, 
         companyDispatch } = useContext(MainContext);
+    const { loginState } = useContext(LoginContext);
     const { lists } = listsState;
     const { companies } = companiesState;
     const { jwtoken } = loginState;
@@ -27,7 +28,7 @@ function ListsScreen(props) {
     },[]);
 
     const handleSelectCompany = (e) => {
-        console.log(e.target.dataset.ticker);
+        // console.log(e.target.dataset.ticker);
         getCompany(companyDispatch, e.target.dataset.ticker);
     }
 
@@ -39,7 +40,12 @@ function ListsScreen(props) {
                 (<div className="lists-container">
                     { lists.length > 0 ? (
                         lists.map(list => (
-                            <List list={list} handleSelect={handleSelectCompany} key={`${list.list_name}${list.id}`} />
+                            <List 
+                                list={list}
+                                dispatch={listsDispatch}
+                                handleSelect={handleSelectCompany} 
+                                key={`${list.list_name}${list.id}`} 
+                            />
                         ))) : ''
                     }
                 </div>)

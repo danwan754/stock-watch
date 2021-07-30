@@ -4,9 +4,11 @@ import QuoteScreen from './screens/QuoteScreen';
 import TopPickScreen from './screens/TopPickScreen';
 import SignInScreen from './screens/SignInScreen';
 import ListsScreen from './screens/ListsScreen';
-
+import RegisterScreen from './screens/RegisterScreen';
+import NavBar from './components/NavBar';
 
 function App() {
+
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -14,12 +16,7 @@ function App() {
           <div className="header-brand">
             <Link to="/">Stock-Watch</Link>
           </div>
-          <div className="header-links">
-            <Link to="/quote">Quote</Link>
-            <Link to="/lists">Watch-Lists</Link>
-            <Link to="/top">Top-Picks</Link>
-            <Link to="/signin">Sign-In</Link>
-          </div>
+          <NavBar />
         </header>
         <main>
           <div className="main-container">
@@ -27,7 +24,8 @@ function App() {
             <Route path="/quote" component={QuoteScreen} />
             <Route path="/top" component={TopPickScreen} />
             <Route path="/lists" component={ListsScreen} />
-            <Route path="/signin" component={SignInScreen} />
+            <Route path="/login" component={SignInScreen} />
+            <Route path="/register" component={RegisterScreen} />
           </div>
         </main>
         <footer>

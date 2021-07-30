@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import Axios from 'axios';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import Loader from '../components/Loader';
-import { MainContext } from '../contexts/MainContext';
-import { LOGIN_LOADING_FAIL, LOGIN_LOADING_REQUEST, LOGIN_LOADING_SUCCESS } from '../constants/loginConstants';
+import { loginUser } from '../actions/login';
+import { LoginContext } from '../contexts/LoginContext';
 import '../css/screens/SignInScreen.css';
 
 
@@ -11,8 +11,17 @@ function SignInScreen(props) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const { loginState, loginDispatch } = useContext(MainContext);
+    const { loginState, loginDispatch } = useContext(LoginContext);
+    
+    // const location = useLocation();
+    // const fromRegister = location.state || {};
+    // const history = useHistory();
+    // if (loginState.username) {
+    //     history.push('/lists');
+    // }
+    // if (Object.keys(fromRegister).length > 0) {
+    //     loginUser(loginDispatch, fromRegister.email, fromRegister.password);
+    // }
 
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
@@ -24,23 +33,7 @@ function SignInScreen(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        loginDispatch({ type: LOGIN_LOADING_REQUEST });
-        Axios.post('/auth/login', {
-            username: email,
-            password
-        })
-        .then(res => {
-            if (!res.data.error) {
-                // redirect to watch lists
-                console.log(res.data);
-                loginDispatch({ type: LOGIN_LOADING_SUCCESS, payload: res.data.accessToken });
-            } else {
-                loginDispatch({ type: LOGIN_LOADING_FAIL, error: res.data.error });
-            }
-        })
-        .catch(err => {
-            loginDispatch({ type: LOGIN_LOADING_FAIL, error: err.response.data.error || err.message });
-        });
+        loginUser(loginDispatch, email, password);
     }
 
     return (
@@ -50,12 +43,13 @@ function SignInScreen(props) {
                 <div className="sign-in-container">
                     <h4>Log In</h4>
                     <form onSubmit={handleSubmit}>
-                        <label>Email: </label><br/>
-                        <input type='text' onChange={handleChangeEmail} /><br/><br/>
+                        <label>Email / Username: </label><br/>
+                        <input type='text' onChange={handleChangeEmail} value={email} /><br/><br/>
                         <label>Password: </label><br/>
-                        <input type='password' onChange={handleChangePassword} /><br/>
+                        <input type='password' onChange={handleChangePassword} value={password} /><br/>
                         <input type='submit' value='Log in' className="log-in-submit" />
                     </form>
+                    <p>Don't have an account? <Link to='/register'>Register now.</Link></p>
                 </div>
             )}
         </div>

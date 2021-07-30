@@ -11,14 +11,16 @@ import '../css/screens/QuoteScreen.css';
 function QuoteScreen(props) {
 
     const { companiesState, companiesDispatch, companyState } = useContext(MainContext);
+    // const [ requestAttempts, setRequestAttempts] = useState(0);
 
     useEffect(() => {
+        // if (!companiesState.companies.length > 0 && requestAttempts < 3) {
+            // setRequestAttempts(requestAttempts + 1);
         if (!companiesState.companies.length > 0) {
             getCompanies(companiesDispatch);
         }
     }, []);
 
-    console.log(companiesState.loading);
     return (
         <div className="quote-screen-container">
             { companiesState.loading ? <Loader /> : <QuoteSearch />}

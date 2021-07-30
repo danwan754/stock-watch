@@ -7,9 +7,8 @@
 }
 
 .sign-in-container {
-    /* display: inline-block; */
     padding: 1.5em 2em 1.5em 2em;
-    border: 1px solid black;
+    box-shadow: 0 0 3px black;
     border-radius: 8px;
     width: 400px;
 }
@@ -49,4 +48,30 @@
 .login-error {
     color: rgb(182, 43, 43);
     font-weight: 600;
+}
+
+.register-success-img {
+    width: 100px;
+    object-fit: contain;
+    margin-left: .5em;
+}
+
+.register-success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(36, 180, 36);
+    font-size: 1.5em;
+}
+.register-success-container + a {
+    margin: 1em;
+    text-decoration: none;
+    color: rgb(96, 96, 170);
+    font-weight: 600;
+}
+.register-success-container + a:hover {
+    color:rgb(120, 120, 182);
+}
+.register-success-container + a:active {
+    color: rgb(76, 76, 155);
 }

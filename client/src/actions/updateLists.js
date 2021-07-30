@@ -24,15 +24,6 @@ export const addCompany = (listID, ticker, jwtoken) => {
 }
 
 export const deleteCompany = (listID, ticker, jwtoken) => {
-    // const config = {
-    //     data: {
-    //         list_id: listID,
-    //         ticker: ticker
-    //     },
-    //     headers: {
-    //         Authorization: `token ${jwtoken}`
-    //     }
-    // };
     const config = {
         params: {
             list_id: listID,
@@ -53,9 +44,9 @@ export const deleteCompany = (listID, ticker, jwtoken) => {
     );
 }
 
-export const updateLists = (checkboxes, ticker, dispatch, lists, jwtoken) => {
+export const updateLists = async (checkboxes, ticker, dispatch, lists, jwtoken) => {
     dispatch({ type: COMPANY_TO_LIST_LOADING_REQUEST });
-    Promise.all(checkboxes.map(checkbox => {
+    await Promise.all(checkboxes.map(checkbox => {
         for (const list of lists) {
             if (checkbox.id == list.id) {                
                 const hasTicker = Object.keys(list.list).includes(ticker);

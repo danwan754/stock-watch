@@ -1,4 +1,4 @@
-import { LOGIN_LOADING_FAIL, LOGIN_LOADING_REQUEST, LOGIN_LOADING_SUCCESS } from '../constants/loginConstants';
+import { LOGIN_LOADING_FAIL, LOGIN_LOADING_REQUEST, LOGIN_LOADING_SUCCESS, LOGOUT } from '../constants/loginConstants';
 
 export const loginReducer = (state, action) => {
     switch(action.type) {
@@ -13,7 +13,8 @@ export const loginReducer = (state, action) => {
             return {
                 ...state,
                 loading: false,
-                jwtoken: action.payload,
+                jwtoken: action.payload.jwtoken,
+                username: action.payload.username,
                 error: null
             };
 
@@ -23,6 +24,13 @@ export const loginReducer = (state, action) => {
                 loading: false,
                 error: action.error
             };
+        case LOGOUT:
+            return {
+                ...state,
+                error: null,
+                username: '',
+                jwtoken: ''
+            }
         default:
             throw new Error();
     }

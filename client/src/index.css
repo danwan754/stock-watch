@@ -33,19 +33,6 @@ header a {
   padding: 1rem;
   /* text-shadow: .2rem black; */
 }
-.header-links{
-  font-weight: bold;
-}
-.header-links a{
-  margin: 0 2rem 0 2rem;
-  color: #8c8c8c;
-}
-.header-links a:hover{
-  color: #339933;
-}
-.header-links a:focus{
-  color: #404040;
-}
 
 main {
   grid-area: "main";

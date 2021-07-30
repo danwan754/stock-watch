@@ -70,7 +70,7 @@ router.post('/ticker/add', async (req, res) => {
     const { list_id, ticker } = req.body;
     const uid = req.user.id;
     if (list_id && ticker) {
-        await addTicker(list_id, uid, ticker);
+        await addTicker(uid, list_id, ticker);
         res.status(201).json({ message: "Added: " + ticker });
     } else {
         res.status(400).json({ error: "Request to add item requires list ID and ticker" });
@@ -78,14 +78,17 @@ router.post('/ticker/add', async (req, res) => {
 });
 
 // delete ticker from list
-router.delete('/ticker/remove', async (req, res) => {
-    const { list_id, ticker } = req.query;
+router.delete('/tickers/remove', async (req, res) => {
+    const { list_id, tickers } = req.query;
+    console.log(tickers);
+    tickers = tickers.split(',');
+    console.log(tickers);
     const uid = req.user.id;
     if (list_id && ticker) {
-        await deleteTicker(list_id, uid, ticker);
+        // await deleteTicker(uid, list_id, tickers);
         res.sendStatus(204);
     } else {
-        res.status(400).json({ error: "Request to delete item requires list ID and ticker" });
+        res.status(400).json({ error: "Request to delete item requires list ID and ticker(s)" });
     }
 })
 

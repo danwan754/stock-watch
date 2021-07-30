@@ -29,7 +29,24 @@ CREATE TABLE Lists (
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
+// create list table; list of tickers
+CREATE TABLE Lists2 (
+    id SMALLINT UNSIGNED AUTO_INCREMENT,
+    user_id SMALLINT UNSIGNED NOT NULL,
+    list_name VARCHAR(20),
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES Users(id)
+);
 
+// create bridge table; map list ID to ticker
+CREATE TABLE List_items (
+    user_id SMALLINT UNSIGNED NOT NULL,
+    list_id SMALLINT UNSIGNED NOT NULL,
+    stock_id SMALLINT UNSIGNED NOT NULL,
+    FOREIGN KEY (list_id) REFERENCES Lists(id),
+    FOREIGN KEY (stock_id) REFERENCES Stocks(id),
+    PRIMARY KEY (user_id, list_id, stock_id)
+);
 
 
 // insert into Users

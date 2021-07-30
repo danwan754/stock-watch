@@ -1,20 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { formatNum } from '../util/quoteHelper';
 import '../css/components/List.css';
+import { updateList } from '../actions/updateList';
+import ListEdit from './ListEdit';
 
 function List(props) {
 
-    const { list } = props;
+    const { list, dispatch } = props;
+    const [isEdit, setIsEdit] = useState(false);
+    const [title, setTitle] = useState(list.list_name);
+    const [saved, setSaved] = useState(false);
+
+    const handleEdit = () => {
+        setIsEdit(true);
+    }
 
     return (
+        <React.Fragment>
+        {isEdit ? <ListEdit list={list} setIsEdit={setIsEdit} />
+        : (
         <ul className="list-container">
             <li className="list-title" key={`${list.id}title`}>
-                {list.list_name}
+                <span>{list.list_name}</span>
+                <img src='edit.png' alt='edit' onClick={handleEdit} width='20px' height='20px' className="pointer-events-on"/>
             </li>
             { Object.keys(list.list).length > 0 ? (
                 Object.keys(list.list).map(ticker => (
-                    <li key={`${list.list.id}${ticker}`} data-ticker={ticker} onClick={props.handleSelect}>
+                    <li key={`${list.list.id}${ticker}`} data-ticker={ticker} onClick={props.handleSelect} className="list-item no-pointer-events">
                         <span>{ticker}<br/>{list.list[ticker].quote.companyName}</span>
                         <span>
                             <span className="price-current">{formatNum(list.list[ticker].quote.latestPrice)}</span><br/>
@@ -28,6 +41,8 @@ function List(props) {
             ) : ''
             }
         </ul>
+        )}
+        </React.Fragment>
     )
 }
 

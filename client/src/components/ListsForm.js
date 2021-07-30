@@ -5,6 +5,7 @@ import { MainContext } from '../contexts/MainContext';
 import { companyToListReducer } from '../reducers/companyToListReducer';
 import Loader from './Loader';
 import '../css/components/ListsForm.css';
+import { LoginContext } from '../contexts/LoginContext';
 
 function ListsForm(props) {
 
@@ -12,9 +13,9 @@ function ListsForm(props) {
         listsState,
         listsDispatch,
         companyState,
-        loginState,
         companiesState 
     } = useContext(MainContext);
+    const { loginState } = useContext(LoginContext);
     const [listsUpdateState, listsUpdateDispatch] = useReducer(companyToListReducer, {loading: false, error: null});
     const [saved, setSaved] = useState(false);
     const { lists } = listsState;
