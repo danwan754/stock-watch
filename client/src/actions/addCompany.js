@@ -1,22 +1,23 @@
 import axios from 'axios';
 
-import { COMPANY_TO_LIST_LOADING_FAIL, COMPANY_TO_LIST_LOADING_REQUEST, COMPANY_TO_LIST_LOADING_SUCCESS } from '../constants/companyToListConstants';
+export const addCompany = (listID, tickers, jwtoken) => {
+    const data = {
+        list_id: listID,
+        ticker: tickers
+    };
+    const headers = {
+        headers: {
+            Authorization: `token ${jwtoken}`
+        }
+    };
 
-export const addCompany = (listIDs, ticker, dispatch) => {
-    dispatch({ type: COMPANY_TO_LIST_LOADING_REQUEST });
-    Promise.all(listIDs.map(id => {
-        return (
-            axios.post(`/user/list/add`, {
-                list_id: id,
-                ticker: ticker
-            })
-            .then(res => {
-                dispatch({ type: COMPANY_TO_LIST_LOADING_SUCCESS });
-            })
-            .catch(err => {
-                console.log(`Failed to add ${ticker} to list (id: ${id})`);
-                dispatch({ type: COMPANY_TO_LIST_LOADING_FAIL, error: err.message });
-            })
-        )
-    }));
+    return (
+        axios.post(`/user/ticker/add`, data, headers)
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            console.log(`Failed to add ${tickers} to list (id: ${listID})`);
+        })
+    );
 }

@@ -42,7 +42,6 @@ function ListsScreen(props) {
                         lists.map(list => (
                             <List 
                                 list={list}
-                                dispatch={listsDispatch}
                                 handleSelect={handleSelectCompany} 
                                 key={`${list.list_name}${list.id}`} 
                             />

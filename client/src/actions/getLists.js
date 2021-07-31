@@ -13,6 +13,7 @@ export const getLists = async (dispatch, companies, jwt) => {
     })
     .then(res => {
         // const lists = tickerAndCompanyLists(companies, res.data);
+        // console.log(res.data);
         dispatch({ 
             type: LISTS_LOADING_SUCCESS, 
             // payload: lists

@@ -58,7 +58,6 @@ router.delete('/list/delete', async (req, res) => {
     const uid = req.user.id;
     if (list_id) {
         const id = await deleteList(list_id, uid);
-        console.log(id);
         res.status(201).json({ message: "Deleted list." });
     }
     res.status(400).json({ message: "Missing list ID."});
@@ -69,7 +68,8 @@ router.post('/ticker/add', async (req, res) => {
     const { list_id, ticker } = req.body;
     const uid = req.user.id;
     if (list_id && ticker) {
-        await addTicker(uid, list_id, ticker);
+        const tickers = ticker.split(',');
+        await Promise.allSettled(tickers.map(ticker => addTicker(uid, list_id, ticker)));
         res.status(201).json({ message: "Added: " + ticker });
     } else {
         res.status(400).json({ error: "Request to add item requires list ID and ticker" });
@@ -79,7 +79,6 @@ router.post('/ticker/add', async (req, res) => {
 // delete ticker from list
 router.delete('/ticker/remove', async (req, res) => {
     const { list_id, tickers } = req.query;
-    console.log(tickers);
     const uid = req.user.id;
     if (list_id && tickers) {
         await deleteTicker(uid, list_id, tickers.split(','));

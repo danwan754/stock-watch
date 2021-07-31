@@ -65,7 +65,7 @@ export const getLists = user_id => {
                 });
                 resolve(JSON.parse(JSON.stringify(result)));
             } else {
-                resolve(null);
+                resolve([]);
             }
         })
     });
@@ -93,7 +93,7 @@ export const insertList = (user_id, list_name) => {
     return new Promise((resolve, reject) => {
         con.query(sql, [user_id, list_name], (err, result) => {
             if (err) throw err;
-            console.log("inserted new list; id=" + result.insertId);
+            // console.log("inserted new list; id=" + result.insertId);
             resolve(result.insertId);
         });
     });
@@ -111,10 +111,10 @@ export const insertList = (user_id, list_name) => {
 
 // return list ID and ticker
 export const addTicker = (user_id, list_id, ticker) => {
-    let sql = `INSERT INTO List_items (user_id, list_id, ticker) 
-                VALUES (?,?,?)`;
+    let sql = `INSERT INTO List_items (list_id, ticker) 
+                VALUES (?,?)`;
     return new Promise((resolve, reject) => {
-        con.query(sql, [user_id, list_id, ticker], (err, result) => {
+        con.query(sql, [list_id, ticker], (err, result) => {
             if (err) throw err;
             resolve(result);
         });
@@ -160,7 +160,7 @@ export const deleteList = (user_id, list_id) => {
     return new Promise((resolve) => {
         con.query(sql, [user_id, list_id], (err, result) => {
             if (err) throw err;
-            console.log(result);
+            // console.log(result);
             resolve(result);
         });
     });

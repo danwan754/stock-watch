@@ -1,4 +1,7 @@
+import axios from "axios";
+
 export const deleteCompany = (listID, tickers, jwtoken) => {
+    console.log(tickers);
     const config = {
         params: {
             list_id: listID,
@@ -9,7 +12,7 @@ export const deleteCompany = (listID, tickers, jwtoken) => {
         }
     }
     return (
-        axios.delete(`/user/tickers/remove`, config)
+        axios.delete(`/user/ticker/remove`, config)
         .then(res => {
             return res.data;
         })
