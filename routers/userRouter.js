@@ -17,7 +17,6 @@ router.get('/lists', async (req, res) => {
                 return response.data;
             });
     }
-
     const resultArr = await Promise.all(listRecords.map(listRecord => listRecord.list.length > 0 ? getBatchQuotes(listRecord.list) : {} ))
     .then(values => {
         const result = values.map((listObj, idx) => {
@@ -78,14 +77,12 @@ router.post('/ticker/add', async (req, res) => {
 });
 
 // delete ticker from list
-router.delete('/tickers/remove', async (req, res) => {
+router.delete('/ticker/remove', async (req, res) => {
     const { list_id, tickers } = req.query;
     console.log(tickers);
-    tickers = tickers.split(',');
-    console.log(tickers);
     const uid = req.user.id;
-    if (list_id && ticker) {
-        // await deleteTicker(uid, list_id, tickers);
+    if (list_id && tickers) {
+        await deleteTicker(uid, list_id, tickers.split(','));
         res.sendStatus(204);
     } else {
         res.status(400).json({ error: "Request to delete item requires list ID and ticker(s)" });

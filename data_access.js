@@ -47,15 +47,15 @@ export const getUser = username => {
 
 // return list of stocklist objects or null if nothing found
 export const getLists = user_id => {
-    let sql = `SELECT Lists2.id AS id, Lists2.list_name AS list_name, JSON_ARRAYAGG(ticker) AS list 
+    let sql = `SELECT Lists.id AS id, Lists.list_name AS list_name, JSON_ARRAYAGG(ticker) AS list 
                 FROM List_items 
-                    INNER JOIN Lists2 
-                    ON List_items.list_id = Lists2.id 
-                    INNER JOIN Stocks 
-                    ON List_items.stock_id = Stocks.id 
-                WHERE Lists2.user_id = ? 
-                GROUP BY Lists2.id 
-                ORDER BY Lists2.id;`;
+                    INNER JOIN Lists
+                    ON List_items.list_id = Lists.id
+                    INNER JOIN Users
+                    ON Lists.user_id = Users.id
+                WHERE Lists.user_id = ? 
+                GROUP BY Lists.id 
+                ORDER BY Lists.id;`;
     return new Promise((resolve, reject) => {
         con.query(sql, [user_id], (err, result) => {
             if (err) throw err;
@@ -89,7 +89,7 @@ export const getLists = user_id => {
 
 // return id of inserted list
 export const insertList = (user_id, list_name) => {
-    let sql = "INSERT INTO Lists2 (user_id, list_name) VALUES (?, ?)";
+    let sql = "INSERT INTO Lists (user_id, list_name) VALUES (?, ?)";
     return new Promise((resolve, reject) => {
         con.query(sql, [user_id, list_name], (err, result) => {
             if (err) throw err;
@@ -111,8 +111,8 @@ export const insertList = (user_id, list_name) => {
 
 // return list ID and ticker
 export const addTicker = (user_id, list_id, ticker) => {
-    let sql = `INSERT INTO List_items (user_id, list_id, stock_id) 
-                VALUES (?,?, (SELECT id FROM Stocks WHERE ticker = ?))`;
+    let sql = `INSERT INTO List_items (user_id, list_id, ticker) 
+                VALUES (?,?,?)`;
     return new Promise((resolve, reject) => {
         con.query(sql, [user_id, list_id, ticker], (err, result) => {
             if (err) throw err;
@@ -134,17 +134,11 @@ export const addTicker = (user_id, list_id, ticker) => {
 export const deleteTicker = (user_id, list_id, tickers) => {
     let sql = ` DELETE 
                 FROM List_items 
-                WHERE user_id = ? 
-                    AND list_id = ? 
-                    AND stock_id 
-                        IN (
-                            SELECT id 
-                            FROM Stocks 
-                            WHERE ticker
-                                IN (?)
-                        )`;
+                WHERE list_id = ? 
+                    AND ticker 
+                        IN ((?))`;
     return new Promise((resolve) => {
-        con.query(sql, [user_id, list_id, tickers], (err, result) => {
+        con.query(sql, [list_id, tickers], (err, result) => {
             if (err) throw err;
             resolve(result);
         });
@@ -161,7 +155,7 @@ export const deleteTicker = (user_id, list_id, tickers) => {
 // }
 
 export const deleteList = (user_id, list_id) => {
-    let sql = `DELETE FROM Lists2
+    let sql = `DELETE FROM Lists
                 WHERE user_id = ? AND id = ?`;
     return new Promise((resolve) => {
         con.query(sql, [user_id, list_id], (err, result) => {
