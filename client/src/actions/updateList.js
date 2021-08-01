@@ -1,6 +1,7 @@
 import { UPDATE_LIST_LOADING_FAIL, UPDATE_LIST_LOADING_REQUEST, UPDATE_LIST_LOADING_SUCCESS } from "../constants/updateListConstants";
 import { deleteCompany } from "./deleteCompany";
 import { addCompany } from './addCompany';
+import { updateTitle } from "./updateTitle";
 
 
 export const updateList = async (dispatch, list, title, checkboxes, jwtoken) => {
@@ -25,7 +26,7 @@ export const updateList = async (dispatch, list, title, checkboxes, jwtoken) => 
     // console.log(toAddTickers);
     // console.log(toDeleteTickers);
     await Promise.allSettled([toDeleteTickers.length > 0 ? deleteCompany(list.id, toDeleteTickers.join(','), jwtoken) : null, 
-        toAddTickers.length > 0 ? addCompany(list.id, toAddTickers.join(','), jwtoken) : null])
+        toAddTickers.length > 0 ? addCompany(list.id, toAddTickers.join(','), jwtoken) : null, updateTitle(list.id, title, jwtoken)])
     .then(res => {
         dispatch({ type: UPDATE_LIST_LOADING_SUCCESS });
     })

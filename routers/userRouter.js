@@ -2,7 +2,7 @@ import axios from 'axios';
 import Express from 'express';
 
 import url from '../url.js';
-import { addTicker, deleteTicker, getLists, insertList, deleteList } from '../data_access.js';
+import { addTicker, deleteTicker, getLists, insertList, deleteList, updateListName } from '../data_access.js';
 
 let router = Express.Router();
 
@@ -49,6 +49,18 @@ router.post('/list/create', async (req, res) => {
         });
     } else {
         res.status(400).json({ message: "Missing list name."});
+    }
+});
+
+// update list name
+router.put('/list/put/name', async (req, res) => {
+    const { list_id, title } = req.body;
+    const uid = req.user.id;
+    if (list_id) {
+        updateListName(uid, list_id, title);
+        res.sendStatus(204);
+    } else {
+        res.status(400).json({ message: "Require list id and new name/title."});
     }
 });
 

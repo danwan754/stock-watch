@@ -70,22 +70,6 @@ export const getLists = user_id => {
         })
     });
 }
-// export const getLists = user_id => {
-//     let sql = "SELECT Lists.id, list_name, list FROM Users INNER JOIN Lists ON Users.id = Lists.user_id WHERE Users.id = ?";
-//     return new Promise((resolve, reject) => {
-//         con.query(sql, [user_id], (err, result) => {
-//             if (err) throw err;
-//             if (result.length > 0) {
-//                 result.forEach(row => {
-//                     row.list = JSON.parse(row.list);
-//                 });
-//                 resolve(JSON.parse(JSON.stringify(result)));
-//             } else {
-//                 resolve(null);
-//             }
-//         })
-//     });
-// }
 
 // return id of inserted list
 export const insertList = (user_id, list_name) => {
@@ -98,16 +82,20 @@ export const insertList = (user_id, list_name) => {
         });
     });
 }
-// export const insertList = (user_id, list_name) => {
-//     let sql = "INSERT INTO Lists (user_id, list_name, list) VALUES (?, ?, JSON_ARRAY())";
-//     return new Promise((resolve, reject) => {
-//         con.query(sql, [user_id, list_name], (err, result) => {
-//             if (err) throw err;
-//             console.log("inserted new list; id=" + result.insertId);
-//             resolve(result.insertId);
-//         });
-//     });
-// }
+
+// return id of updated list
+export const updateListName = (user_id, list_id, title) => {
+    let sql = `UPDATE Lists
+                SET list_name = ?
+                WHERE id = ?
+                    AND user_id = ?`;
+    return new Promise((resolve, reject) => {
+        con.query(sql, [title, list_id, user_id], (err, result) => {
+            if (err) throw err;
+            resolve(result);
+        });
+    });
+}
 
 // return list ID and ticker
 export const addTicker = (user_id, list_id, ticker) => {
