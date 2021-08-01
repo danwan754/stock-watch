@@ -1,16 +1,22 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useReducer, useState } from 'react';
 
+import Loader from './Loader';
 import '../css/components/List.css';
 import { updateList } from '../actions/updateList';
 import { LoginContext } from '../contexts/LoginContext';
+import { MainContext } from '../contexts/MainContext';
+import { updateListReducer } from '../reducers/updateListReducer';
+import { updateListInitialState } from '../initialStates/updateList';
+import { getLists } from '../actions/getLists';
 
 function ListEdit(props) {
 
-    const { list, dispatch } = props;
+    const { list } = props;
     const [title, setTitle] = useState(list.list_name);
     const [saved, setSaved] = useState(false);
-    const [updateListState,]
     const { loginState } = useContext(LoginContext);
+    const { listsDispatch } = useContext(MainContext)
+    const [updateListState, updateListDispatch] = useReducer(updateListReducer, updateListInitialState);
     const { jwtoken } = loginState;
 
     const handleFormTitle = (e) => {
@@ -24,11 +30,12 @@ function ListEdit(props) {
         unsaved();
     }
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
-        const checkboxes = document.getElementById('updateListForm').elements['check'];
-        updateList(dispatch, list, title, Array.from(checkboxes), jwtoken);
+        const checkboxes = document.getElementById(`list-container${list.id}`).querySelectorAll('input[type="checkbox"]');
+        await updateList(updateListDispatch, list, title, Array.from(checkboxes), jwtoken);
         setSaved(true);
+        await getLists(listsDispatch, jwtoken);
     }
 
     const unsaved = () => {
@@ -40,7 +47,7 @@ function ListEdit(props) {
     return (
         <React.Fragment>
             <form onSubmit={handleFormSubmit} id="updateListForm">
-                <ul className="list-container">
+                <ul className="list-container" id={`list-container${list.id}`}>
                     <li className="list-edit-header"> 
                         <input type='button' value='<' onClick={()=>props.setIsEdit(false)} />
                         <span>Edit</span>
@@ -60,6 +67,7 @@ function ListEdit(props) {
                         ))
                     ) : ''}
                 </ul>
+                {updateListState.loading ? <Loader /> : ''}
             </form>
         </React.Fragment>
     )

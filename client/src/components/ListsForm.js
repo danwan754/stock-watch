@@ -12,25 +12,23 @@ function ListsForm(props) {
     const { 
         listsState,
         listsDispatch,
-        companyState,
-        companiesState 
+        companyState
     } = useContext(MainContext);
     const { loginState } = useContext(LoginContext);
     const [listsUpdateState, listsUpdateDispatch] = useReducer(companyToListReducer, {loading: false, error: null});
     const [saved, setSaved] = useState(false);
     const { lists } = listsState;
     const { companyObj } = companyState;
-    const { companies } = companiesState;
     const { jwtoken } = loginState;
 
     const handleForm = async (e) => {
         e.preventDefault();
-        const checkboxes = document.getElementById('addToListForm').elements['listName'];
+        const checkboxes = document.getElementById(`lists-form`).querySelectorAll('input[type="checkbox"]');
         await updateLists(Array.from(checkboxes), companyObj.symbol, listsUpdateDispatch, lists, jwtoken);
         listsUpdateState.error ? setSaved(false) : setSaved(true);
         
         //refresh lists
-        await getLists(listsDispatch, companies, jwtoken);
+        await getLists(listsDispatch, jwtoken);
     }
 
     const handleChange = () => {
@@ -48,7 +46,7 @@ function ListsForm(props) {
 
     return (
         <div className="lists-form-container">
-            <form onSubmit={handleForm} onChange={handleChange} id="addToListForm">
+            <form onSubmit={handleForm} onChange={handleChange} id={`lists-form`}>
                 { lists.map(list => (
                     <div key={list.id} className="lists-form-item">
                         <label htmlFor={list.id}>{list.list_name}</label>
