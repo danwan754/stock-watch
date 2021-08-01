@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { LISTS_LOADING_FAIL, LISTS_LOADING_REQUEST, LISTS_LOADING_SUCCESS } from '../constants/listsConstants';
 import { tickerAndCompanyLists } from '../util/listsHelper';
 
-export const getLists = async (dispatch, companies, jwt) => {
+export const getLists = async (dispatch, jwt) => {
     dispatch({ 
         type: LISTS_LOADING_REQUEST 
     });

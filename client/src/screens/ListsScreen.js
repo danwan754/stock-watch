@@ -20,11 +20,11 @@ function ListsScreen(props) {
         companyDispatch } = useContext(MainContext);
     const { loginState } = useContext(LoginContext);
     const { lists } = listsState;
-    const { companies } = companiesState;
+    // const { companies } = companiesState;
     const { jwtoken } = loginState;
     
     useEffect(() => {
-        getLists(listsDispatch, companies, jwtoken);
+        getLists(listsDispatch, jwtoken);
     },[]);
 
     const handleSelectCompany = (e) => {

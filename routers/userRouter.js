@@ -17,7 +17,7 @@ router.get('/lists', async (req, res) => {
                 return response.data;
             });
     }
-    const resultArr = await Promise.all(listRecords.map(listRecord => listRecord.list.length > 0 ? getBatchQuotes(listRecord.list) : {} ))
+    const resultArr = await Promise.all(listRecords.map(listRecord => listRecord.list.length > 0 && listRecord.list[0] ? getBatchQuotes(listRecord.list) : {} ))
     .then(values => {
         const result = values.map((listObj, idx) => {
             return {

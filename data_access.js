@@ -48,11 +48,11 @@ export const getUser = username => {
 // return list of stocklist objects or null if nothing found
 export const getLists = user_id => {
     let sql = `SELECT Lists.id AS id, Lists.list_name AS list_name, JSON_ARRAYAGG(ticker) AS list 
-                FROM List_items 
+                FROM Users
                     INNER JOIN Lists
+                    ON Lists.user_id = Users.id 
+                    LEFT JOIN List_items
                     ON List_items.list_id = Lists.id
-                    INNER JOIN Users
-                    ON Lists.user_id = Users.id
                 WHERE Lists.user_id = ? 
                 GROUP BY Lists.id 
                 ORDER BY Lists.id;`;
@@ -136,7 +136,7 @@ export const deleteTicker = (user_id, list_id, tickers) => {
                 FROM List_items 
                 WHERE list_id = ? 
                     AND ticker 
-                        IN ((?))`;
+                        IN (?)`;
     return new Promise((resolve) => {
         con.query(sql, [list_id, tickers], (err, result) => {
             if (err) throw err;
