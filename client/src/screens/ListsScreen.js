@@ -11,7 +11,7 @@ import { LoginContext } from '../contexts/LoginContext';
 import ListWrapper from '../components/ListWrapper';
 import SideMenu from '../components/SideMenu';
 import NewListModal from '../components/NewListModal';
-import { NewListContextProvider } from '../contexts/NewListContext';
+import { ListContextProvider } from '../contexts/ListContext';
 
 function ListsScreen(props) {
     const { 
@@ -32,7 +32,7 @@ function ListsScreen(props) {
     }
 
     return (
-        <NewListContextProvider>
+        <ListContextProvider>
         <div className="lists-screen">
             <QuoteSearch />
             <div className="lists-outter-container">
@@ -64,7 +64,7 @@ function ListsScreen(props) {
             }
             <NewListModal />
         </div>
-        </NewListContextProvider>
+        </ListContextProvider>
     )
 }
 

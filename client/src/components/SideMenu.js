@@ -4,18 +4,18 @@ import { getLists } from '../actions/getLists';
 import '../css/components/SideMenu.css';
 import { MainContext } from '../contexts/MainContext';
 import { LoginContext } from '../contexts/LoginContext';
-import { NewListContext } from '../contexts/NewListContext';
-import { NEW_LIST_MODAL_OPEN } from '../constants/newListModalConstants';
+import { ListContext } from '../contexts/ListContext';
+import { LIST_MODAL_OPEN } from '../constants/listConstants';
 
 function SideMenu(props) {
 
     const { loginState } = useContext(LoginContext);
     const { listsDispatch } = useContext(MainContext);
-    const { newListDispatch } = useContext(NewListContext);
+    const { listDispatch } = useContext(ListContext);
     const { jwtoken } = loginState;
 
-    const handleNewList = () => {
-        newListDispatch({ type: NEW_LIST_MODAL_OPEN });
+    const handleList = () => {
+        listDispatch({ type: LIST_MODAL_OPEN });
     }
 
     const handleRefresh = () => {
@@ -24,7 +24,7 @@ function SideMenu(props) {
 
     return (
         <div className="side-menu">
-            <input type='image' onClick={handleNewList} src='plus.png' />
+            <input type='image' onClick={handleList} src='plus.png' />
             <input type='image' onClick={handleRefresh} src='refresh.png' />
         </div>
     )

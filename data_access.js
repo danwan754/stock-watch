@@ -83,6 +83,18 @@ export const insertList = (user_id, list_name) => {
     });
 }
 
+export const deleteList = (user_id, list_id) => {
+    let sql = `DELETE FROM Lists
+                WHERE user_id = ? AND id = ?`;
+    return new Promise((resolve) => {
+        con.query(sql, [user_id, list_id], (err, result) => {
+            if (err) throw err;
+            // console.log(result);
+            resolve(result);
+        });
+    });
+}
+
 // return id of updated list
 export const updateListName = (user_id, list_id, title) => {
     let sql = `UPDATE Lists
@@ -128,27 +140,6 @@ export const deleteTicker = (user_id, list_id, tickers) => {
     return new Promise((resolve) => {
         con.query(sql, [list_id, tickers], (err, result) => {
             if (err) throw err;
-            resolve(result);
-        });
-    });
-}
-// export const deleteTicker = (list_id, user_id, ticker) => {
-//     let sql = "UPDATE Lists SET list = JSON_REMOVE(list, JSON_UNQUOTE(JSON_SEARCH(list, 'one', ?))) WHERE JSON_SEARCH(list, 'one', ?) IS NOT NULL AND id = ? AND user_id = ?";
-//     return new Promise((resolve) => {
-//         con.query(sql, [ticker, ticker, list_id, user_id], (err, result) => {
-//             if (err) throw err;
-//             resolve(result);
-//         });
-//     });
-// }
-
-export const deleteList = (user_id, list_id) => {
-    let sql = `DELETE FROM Lists
-                WHERE user_id = ? AND id = ?`;
-    return new Promise((resolve) => {
-        con.query(sql, [user_id, list_id], (err, result) => {
-            if (err) throw err;
-            // console.log(result);
             resolve(result);
         });
     });

@@ -1,28 +1,28 @@
-import { NEW_LIST_MODAL_OPEN, NEW_LIST_MODAL_CLOSE, NEW_LIST_MODAL_LOADING_REQUEST, NEW_LIST_MODAL_LOADING_SUCCESS, NEW_LIST_MODAL_LOADING_FAIL } from '../constants/newListModalConstants';
+import { LIST_MODAL_OPEN, LIST_MODAL_CLOSE, LIST_MODAL_LOADING_REQUEST, LIST_MODAL_LOADING_SUCCESS, LIST_MODAL_LOADING_FAIL } from '../constants/listConstants';
 
-export const newListReducer = (state, action) => {
+export const listReducer = (state, action) => {
     switch(action.type) {
-        case NEW_LIST_MODAL_OPEN:
+        case LIST_MODAL_OPEN:
             return {
                 ...state,
                 isOpen: true
             }
-        case NEW_LIST_MODAL_CLOSE:
+        case LIST_MODAL_CLOSE:
             return {
                 ...state,
                 isOpen: false
             }
-        case NEW_LIST_MODAL_LOADING_REQUEST:
+        case LIST_MODAL_LOADING_REQUEST:
             return {
                 ...state,
                 loading: true,
             }
-        case NEW_LIST_MODAL_LOADING_SUCCESS:
+        case LIST_MODAL_LOADING_SUCCESS:
             return {
                 ...state,
                 loading: false
             }
-        case NEW_LIST_MODAL_LOADING_FAIL:
+        case LIST_MODAL_LOADING_FAIL:
             return {
                 ...state,
                 loading: false,

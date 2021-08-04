@@ -1,25 +1,25 @@
 import axios from "axios";
 import { LIST_MODAL_LOADING_FAIL, LIST_MODAL_LOADING_REQUEST, LIST_MODAL_LOADING_SUCCESS } from "../constants/listConstants";
 
-export const createList = async (dispatch, listName, jwtoken) => {
+export const deleteList = async (dispatch, listID, jwtoken) => {
 
     dispatch({ type: LIST_MODAL_LOADING_REQUEST });
-
-    const data = {
-        list_name: listName
-    };
-    const headers = {
+    const config = {
+        params: {
+            list_id: listID
+        },
         headers: {
             Authorization: `token ${jwtoken}`
         }
-    };
+    }
 
-    await axios.post('/user/list/create', data, headers)
+    await axios.delete('/user/list/delete', config)
     .then(res => {
+        console.log('deleted');
         dispatch({ type: LIST_MODAL_LOADING_SUCCESS });
     })
     .catch(err => {
         console.log(err);
         dispatch({ type: LIST_MODAL_LOADING_FAIL });
-    });
+    })
 }

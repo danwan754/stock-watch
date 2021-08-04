@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { NEW_LIST_MODAL_CLOSE } from '../constants/newListModalConstants';
-import { NewListContext } from '../contexts/NewListContext';
+import { LIST_MODAL_CLOSE } from '../constants/listConstants';
+import { ListContext } from '../contexts/ListContext';
 import { LoginContext} from '../contexts/LoginContext';
 
 import { createList } from '../actions/createList';
@@ -10,22 +10,22 @@ import '../css/components/NewListModal.css';
 
 
 function NewListModal(props) {
-    const { newListState, newListDispatch } = useContext(NewListContext);
+    const { listState, listDispatch } = useContext(ListContext);
     const { loginState } = useContext(LoginContext);
     const { listsDispatch } = useContext(MainContext);
     const { jwtoken } = loginState;
-    const { isOpen } = newListState;
+    const { isOpen } = listState;
 
     const handleClose = () => {
-        newListDispatch({ type: NEW_LIST_MODAL_CLOSE });
+        listDispatch({ type: LIST_MODAL_CLOSE });
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const name = e.target.elements.name.value;
-        await createList(newListDispatch, name, jwtoken);
+        await createList(listDispatch, name, jwtoken);
         getLists(listsDispatch, jwtoken);
-        newListDispatch({ type: NEW_LIST_MODAL_CLOSE });
+        listDispatch({ type: LIST_MODAL_CLOSE });
     }
 
     return (

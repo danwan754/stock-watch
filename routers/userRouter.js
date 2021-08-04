@@ -66,13 +66,16 @@ router.put('/list/put/name', async (req, res) => {
 
 // delete list
 router.delete('/list/delete', async (req, res) => {
-    const { list_id } = req.body;
+    const { list_id } = req.query;
     const uid = req.user.id;
     if (list_id) {
-        const id = await deleteList(list_id, uid);
-        res.status(201).json({ message: "Deleted list." });
+        const success = await deleteList(uid, list_id);
+        success ? res.status(201).json({ message: "Deleted list." })
+            : res.sendStatus(500);
     }
-    res.status(400).json({ message: "Missing list ID."});
+    else {
+        res.status(400).json({ message: "Missing list ID."});
+    }
 });
 
 // add ticker to list

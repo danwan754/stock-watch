@@ -65,15 +65,15 @@
     align-items: center;
     padding: .1em 1em .5em 1em;
 }
-.list-edit-header > input {
+.list-edit-header  input {
     height: 2em;
     /* padding: .em; */
     border-radius: 5px;
     border: none;
-    background-color: rgb(208, 221, 240);
+    /* background-color: rgb(208, 221, 240); */
 }
 .list-edit-header > input:hover {
-    background-color: rgb(174, 193, 226);
+    background-color: rgb(220, 228, 241);
 }
 .list-edit-header > input:active {
     background-color: rgb(223, 226, 230);
@@ -95,4 +95,43 @@
 }
 .price-change {
     font-size: .9em;
+}
+
+.list-edit-trash {
+    width: 20px;
+    object-fit: contain;
+    position: relative;
+    /* border: solid black 1px; */
+    display: inline-block;
+}
+.tooltip-delete {
+    /* visibility: hidden; */
+    background-color: rgb(241, 184, 184);
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 50%;
+    margin-left: -70px;
+    text-align: center;
+    padding: .5em;
+    border-radius: 6px;
+    width: 150px;
+    /* border: 1px black solid; */
+}
+.tooltip-delete input {
+    margin: .5em;   
+}
+.confirmed-delete-button {
+    background-color: rgb(199, 55, 55);   
+    color: white;
+}
+.confirmed-delete-button:hover {
+    background-color: rgb(146, 37, 37);   
+}
+.cancel-delete-button {
+    background-color: rgb(113, 133, 204);
+    color: white;
+}
+.cancel-delete-button:hover {
+    background-color: rgb(96, 112, 172);
 }
