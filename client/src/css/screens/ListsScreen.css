@@ -1,13 +1,27 @@
 
 .lists-screen {
-    /* position: relative; */
     padding: 1em 3em 1em 3em;
+}
+
+.lists-outter-container {
+    display: flex;
+    justify-content: space-between;
+    /* margin: 1em 3em 1em 3em; */
+    /* border: 1px red solid; */
+}
+
+.side-menu-container {
+    /* display: flex;
+    align-items: center; */
+
 }
 
 .lists-container {
     display: flex;
-    justify-content: space-between;
-    margin-top: 2em;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+    margin-top: 1em;
+    /* border: 1px blue solid; */
 }
 
 .loader-wrapper {
