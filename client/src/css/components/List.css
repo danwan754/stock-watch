@@ -87,7 +87,12 @@
     cursor: pointer;
 }
 .list-title > span:first-child{
-    /* border: 1px blue solid; */
+    color: rgb(58, 58, 180);
+}
+
+.price-container {
+    text-align: right;
+    /* border: 1px solid black; */
 }
 
 .price-current {

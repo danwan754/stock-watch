@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { LIST_MODAL_CLOSE } from '../constants/listConstants';
 import { ListContext } from '../contexts/ListContext';
 import { LoginContext} from '../contexts/LoginContext';
@@ -10,6 +10,7 @@ import '../css/components/NewListModal.css';
 
 
 function NewListModal(props) {
+    const [listName, setListName] = useState('');
     const { listState, listDispatch } = useContext(ListContext);
     const { loginState } = useContext(LoginContext);
     const { listsDispatch } = useContext(MainContext);
@@ -20,10 +21,14 @@ function NewListModal(props) {
         listDispatch({ type: LIST_MODAL_CLOSE });
     }
 
+    const handleNameChange = (e) => {
+        setListName(e.target.value);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const name = e.target.elements.name.value;
-        await createList(listDispatch, name, jwtoken);
+        await createList(listDispatch, listName, jwtoken);
+        setListName('');
         getLists(listsDispatch, jwtoken);
         listDispatch({ type: LIST_MODAL_CLOSE });
     }
@@ -40,8 +45,15 @@ function NewListModal(props) {
                     <label>
                         Name: &nbsp;
                     </label>
-                    <input type='text' name='name' className='new-list-name-input' />
-                    <input type='submit' className='new-list-name-submit' value='Done' />
+                    <input 
+                        type='text' 
+                        className='new-list-name-input' 
+                        onChange={handleNameChange}
+                        value={listName} />
+                    <input 
+                        type='submit' 
+                        className='new-list-name-submit' 
+                        value='Done' />
                 </form>
             </div>
         </div>

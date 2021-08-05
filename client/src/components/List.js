@@ -29,11 +29,11 @@ function List(props) {
                 Object.keys(list.list).map(ticker => (
                     <li key={`${list.list.id}${ticker}`} data-ticker={ticker} onClick={props.handleSelect} className="list-item no-pointer-events">
                         <span>{ticker}<br/>{list.list[ticker].quote.companyName}</span>
-                        <span>
+                        <span className="price-container">
                             <span className="price-current">{formatNum(list.list[ticker].quote.latestPrice)}</span><br/>
                             {list.list[ticker].quote.changePercent > 0 ? (
-                                <span className={"price-change positive-color"}>+{(formatNum(list.list[ticker].quote.changePercent * 100))} %</span>
-                                ) : <span className={"price-change negative-color"}>{(formatNum(list.list[ticker].quote.changePercent * 100))} %</span>
+                                <span className={"price-change positive-color"}>+{(formatNum(list.list[ticker].quote.changePercent * 100))}%</span>
+                                ) : <span className={"price-change negative-color"}>{(formatNum(list.list[ticker].quote.changePercent * 100))}%</span>
                             }
                         </span>
                     </li>

@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const deleteCompany = (listID, tickers, jwtoken) => {
-    console.log(tickers);
     const config = {
         params: {
             list_id: listID,

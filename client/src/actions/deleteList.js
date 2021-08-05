@@ -15,7 +15,6 @@ export const deleteList = async (dispatch, listID, jwtoken) => {
 
     await axios.delete('/user/list/delete', config)
     .then(res => {
-        console.log('deleted');
         dispatch({ type: LIST_MODAL_LOADING_SUCCESS });
     })
     .catch(err => {
