@@ -24,8 +24,16 @@ function SideMenu(props) {
 
     return (
         <div className="side-menu">
-            <input type='image' onClick={handleList} src='plus.png' />
-            <input type='image' onClick={handleRefresh} src='refresh.png' />
+            <input 
+                type='image' 
+                onClick={handleList} 
+                src='plus.png'
+                alt='add' />
+            <input 
+                type='image'
+                onClick={handleRefresh}
+                src='refresh.png'
+                alt='refresh' />
         </div>
     )
 }

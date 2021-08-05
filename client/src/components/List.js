@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 
 import { formatNum } from '../util/quoteHelper';
 import '../css/components/List.css';
-import { updateList } from '../actions/updateList';
 import ListEdit from './ListEdit';
 
 function List(props) {
 
-    const { list, dispatch } = props;
+    const { list } = props;
     const [isEdit, setIsEdit] = useState(false);
-    const [title, setTitle] = useState(list.list_name);
-    const [saved, setSaved] = useState(false);
+
 
     const handleEdit = () => {
         setIsEdit(true);

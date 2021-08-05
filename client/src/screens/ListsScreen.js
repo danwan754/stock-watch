@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 
 import { getLists } from '../actions/getLists';
 import { MainContext } from '../contexts/MainContext';
-import { getCompany } from '../actions/getCompany';
 import QuoteModal from '../components/QuoteModal';
 import Loader from '../components/Loader';
 import QuoteSearch from '../components/QuoteSearch';
@@ -27,10 +26,6 @@ function ListsScreen(props) {
         getLists(listsDispatch, jwtoken);
     },[]);
 
-    const handleSelectCompany = (e) => {
-        getCompany(companyDispatch, e.target.dataset.ticker);
-    }
-
     return (
         <ListContextProvider>
         <div className="lists-screen">
@@ -44,7 +39,6 @@ function ListsScreen(props) {
                                 lists.map(list => (
                                     <ListWrapper 
                                         list={list}
-                                        handleSelect={handleSelectCompany} 
                                         key={`${list.list_name}${list.id}`} 
                                     />
                                 ))) : ''

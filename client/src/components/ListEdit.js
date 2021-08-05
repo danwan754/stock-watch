@@ -68,6 +68,7 @@ function ListEdit(props) {
                             <input
                                 type='image' 
                                 src='delete.png' 
+                                alt='delete'
                                 onClick={toggleShowDelete}
                                  />
                             {showDelete ? (
@@ -90,6 +91,7 @@ function ListEdit(props) {
                             : <input 
                                 type='image'
                                 src='save.png'
+                                alt='save'
                                 onClick={handleFormSubmit} />
                         }
                     </li>

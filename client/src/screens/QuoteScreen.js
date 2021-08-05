@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import getCompanies from '../actions/getCompanies';
 import { MainContext } from '../contexts/MainContext';
 import QuoteDetails from '../components/QuoteDetails';

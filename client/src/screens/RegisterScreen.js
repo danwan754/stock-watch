@@ -16,7 +16,7 @@ function RegisterScreen(props) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [registerState, registerDispatch] = useReducer(registerReducer, registerInitialState);
 
-    const { loginState, loginDispatch } = useContext(LoginContext);
+    const { loginState } = useContext(LoginContext);
     
     const history = useHistory();
     if (loginState.username) {

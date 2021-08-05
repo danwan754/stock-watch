@@ -1,6 +1,5 @@
 import Axios from 'axios';
 import { LISTS_LOADING_FAIL, LISTS_LOADING_REQUEST, LISTS_LOADING_SUCCESS } from '../constants/listsConstants';
-import { tickerAndCompanyLists } from '../util/listsHelper';
 
 export const getLists = async (dispatch, jwt) => {
     dispatch({ 
@@ -12,11 +11,9 @@ export const getLists = async (dispatch, jwt) => {
         }
     })
     .then(res => {
-        // const lists = tickerAndCompanyLists(companies, res.data);
         // console.log(res.data);
         dispatch({ 
             type: LISTS_LOADING_SUCCESS, 
-            // payload: lists
             payload: res.data
         });
     })

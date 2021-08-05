@@ -7,7 +7,7 @@ import {
     REGISTER_PASSWORDS_NO_MATCH_MESSAGE } from "../constants/registerConstants";
 
 export const validatePassword = (dispatch, password, confirmPassword) => {
-    if (!(password == confirmPassword)) {
+    if (!(password === confirmPassword)) {
         dispatch({ type: REGISTER_PASSWORDS_NO_MATCH, error: REGISTER_PASSWORDS_NO_MATCH_MESSAGE });
         return false;
     }

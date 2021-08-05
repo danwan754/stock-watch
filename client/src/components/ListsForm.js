@@ -37,7 +37,7 @@ function ListsForm(props) {
 
     const containsTicker = (listID) => {
         for (const list of lists) {
-            if (list.id == listID) {
+            if (list.id === listID) {
                 return Object.keys(list.list).includes(companyObj.symbol);
             }
         }
