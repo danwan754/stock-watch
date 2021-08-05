@@ -27,41 +27,12 @@ CREATE TABLE Lists (
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
-/* old
-CREATE TABLE Lists (
-    id SMALLINT UNSIGNED AUTO_INCREMENT,
-    user_id SMALLINT UNSIGNED NOT NULL,
-    list_name VARCHAR(20),
-    list JSON NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES Users(id)
-);
-*/
+
 
 -- create table of all items in lists
 CREATE TABLE List_items (
     list_id SMALLINT UNSIGNED NOT NULL,
     ticker VARCHAR(10) NOT NULL,
-    FOREIGN KEY (list_id) REFERENCES Lists(id),
+    FOREIGN KEY (list_id) REFERENCES Lists(id) ON DELETE CASCADE,
     PRIMARY KEY (list_id, ticker)
 );
-/* old
-CREATE TABLE List_items (
-    user_id SMALLINT UNSIGNED NOT NULL,
-    list_id SMALLINT UNSIGNED NOT NULL,
-    stock_id SMALLINT UNSIGNED NOT NULL,
-    FOREIGN KEY (list_id) REFERENCES Lists(id),
-    FOREIGN KEY (stock_id) REFERENCES Stocks(id),
-    PRIMARY KEY (user_id, list_id, ticker)
-);
-*/
-
-
--- insert into Users
-INSERT INTO USERS (username, password) VALUES (<username>, <password>);
-
--- insert into Lists
-INSERT INTO LISTS (user_id, list_name, list) VALUES (<user_id>, <list_name>, <[list]>);
-
--- insert into Stocks
-INSERT INTO Stocks (ticker, company) VALUES (<ticker>, <company>);
