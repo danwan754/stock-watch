@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import Loader from '../components/Loader';
@@ -15,13 +15,14 @@ function RegisterScreen(props) {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [registerState, registerDispatch] = useReducer(registerReducer, registerInitialState);
-
     const { loginState } = useContext(LoginContext);
-    
     const history = useHistory();
-    if (loginState.username) {
-        history.push('/lists');
-    }
+
+    useEffect(() => {
+        if (loginState.username) {
+            history.push('/lists');
+        }
+    }, []);
 
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
@@ -70,7 +71,7 @@ function RegisterScreen(props) {
                             <input type='password' onChange={handleChangePassword} /><br/><br/>
                             <label>Confirm password: </label><br/>
                             <input type='password' onChange={handleChangeConfirmPassword} /><br/>
-                            <input type='submit' value='Log in' className="log-in-submit" />
+                            <input type='submit' value='Register' className="log-in-submit" />
                         </form>
                         <p>Already registered? <Link to='/login'>Log in.</Link></p>
                     </div>

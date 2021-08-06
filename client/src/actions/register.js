@@ -22,14 +22,13 @@ export const registerUser = (dispatch, username, password) => {
     })
     .then(res => {
         if (!res.data.error) {
-            // redirect to watch lists
-            console.log(res.data);
+            // console.log(res.data);
             dispatch({ type: REGISTER_LOADING_SUCCESS });
         } else {
             dispatch({ type: REGISTER_LOADING_FAIL, error: res.data.error });
         }
     })
     .catch(err => {
-        dispatch({ type: REGISTER_LOADING_FAIL, error: err.response.data.error || err.message });
+        dispatch({ type: REGISTER_LOADING_FAIL, error: err.response.data.message || err.message });
     });
 }

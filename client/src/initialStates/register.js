@@ -1,5 +1,5 @@
 export const registerInitialState = {
-    registered: true,
+    registered: false,
     loading: false,
     error: null
 }

@@ -58,7 +58,7 @@ router.post('/login', async (req, res) => {
             }));
             res.json({ accessToken });
         } else {
-            res.status(400).json({ message: "Invalid login credentials."});
+            res.status(401).json({ message: "Invalid login credentials."});
         }
     } else {
         res.status(404).json({ message: "User: " + username + " does not exist. Please register an account." });

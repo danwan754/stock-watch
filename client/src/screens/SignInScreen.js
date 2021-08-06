@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import Loader from '../components/Loader';
 import { loginUser } from '../actions/login';
@@ -13,15 +13,18 @@ function SignInScreen(props) {
     const [password, setPassword] = useState('');
     const { loginState, loginDispatch } = useContext(LoginContext);
     
-    // const location = useLocation();
-    // const fromRegister = location.state || {};
-    // const history = useHistory();
-    // if (loginState.username) {
-    //     history.push('/lists');
-    // }
-    // if (Object.keys(fromRegister).length > 0) {
-    //     loginUser(loginDispatch, fromRegister.email, fromRegister.password);
-    // }
+    const location = useLocation();
+    const fromRegister = location.state || null;
+    const history = useHistory();
+
+    useEffect(() => {
+        if (fromRegister) {
+            loginUser(loginDispatch, fromRegister.email, fromRegister.password);
+        }
+        if (loginState.jwtoken) {
+            history.push('/lists');
+        }
+    }, [loginState])
 
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
@@ -33,7 +36,7 @@ function SignInScreen(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        loginUser(loginDispatch, email, password);
+        loginUser(loginDispatch, email, password)
     }
 
     return (
@@ -50,6 +53,7 @@ function SignInScreen(props) {
                         <input type='submit' value='Log in' className="log-in-submit" />
                     </form>
                     <p>Don't have an account? <Link to='/register'>Register now.</Link></p>
+                    { loginState.loading ? <Loader /> : ''}
                 </div>
             )}
         </div>

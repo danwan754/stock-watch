@@ -1,4 +1,4 @@
-import { REGISTER_LOADING_REQUEST, REGISTER_LOADING_SUCCESS, REGISTER_LOADING_FAIL } from '../constants/registerConstants'; 
+import { REGISTER_LOADING_REQUEST, REGISTER_LOADING_SUCCESS, REGISTER_LOADING_FAIL, REGISTER_PASSWORDS_NO_MATCH } from '../constants/registerConstants'; 
 
 export const registerReducer = (state, action) => {
     switch (action.type) {
@@ -17,7 +17,12 @@ export const registerReducer = (state, action) => {
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error
+                error: action.error
+            }
+        case REGISTER_PASSWORDS_NO_MATCH:
+            return {
+                ...state,
+                error: action.error
             }
         default:
             throw new Error();
