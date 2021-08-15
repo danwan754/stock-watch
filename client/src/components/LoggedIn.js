@@ -1,17 +1,26 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { clearLists } from '../actions/Lists';
 import { logOutUser } from '../actions/login';
 import { LoginContext } from '../contexts/LoginContext';
+import { MainContext } from '../contexts/MainContext';
 
 function LoggedIn(props) {
 
     const { loginState, loginDispatch } = useContext(LoginContext);
+    const { listsDispatch } = useContext(MainContext);
     const [showLogOut, setShowLogOut] = useState(false);
     let history = useHistory();
 
-    const handleLogOut = () => {
-        logOutUser(loginDispatch);
-        history.push('/login');
+    const handleLogOut = async () => {
+        await logOutUser(loginDispatch);
+        await clearLists(listsDispatch);
+        history.push({
+            pathname: '/login',
+            state: {
+                isLoggedOut: true
+            }
+        });
     }
 
     return (

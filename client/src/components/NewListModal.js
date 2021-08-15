@@ -4,9 +4,10 @@ import { ListContext } from '../contexts/ListContext';
 import { LoginContext} from '../contexts/LoginContext';
 
 import { createList } from '../actions/createList';
-import { getLists } from '../actions/getLists';
+import { getLists } from '../actions/Lists';
 import { MainContext } from '../contexts/MainContext';
 import '../css/components/NewListModal.css';
+import { useHistory } from 'react-router-dom';
 
 
 function NewListModal(props) {

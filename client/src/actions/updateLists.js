@@ -7,7 +7,7 @@ export const updateLists = async (checkboxes, ticker, dispatch, lists, jwtoken) 
     dispatch({ type: COMPANY_TO_LIST_LOADING_REQUEST });
     await Promise.all(checkboxes.map(checkbox => {
         for (const list of lists) {
-            if (checkbox.id === list.id) {                
+            if (checkbox.id == list.id) {
                 const hasTicker = Object.keys(list.list).includes(ticker);
                 if (checkbox.checked) {
                     return hasTicker ? null : addCompany(list.id, ticker, jwtoken);
@@ -22,7 +22,7 @@ export const updateLists = async (checkboxes, ticker, dispatch, lists, jwtoken) 
         dispatch({ type: COMPANY_TO_LIST_LOADING_SUCCESS });
     })
     .catch(err => {
-        console.log(`Failed to delete ${ticker} from lists.`);
+        console.log(err);
         dispatch({ type: COMPANY_TO_LIST_LOADING_FAIL, error: err.message });
     });
 }

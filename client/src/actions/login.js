@@ -3,20 +3,43 @@ import { LOGIN_LOADING_FAIL, LOGIN_LOADING_REQUEST, LOGIN_LOADING_SUCCESS, LOGOU
 
 export const loginUser = (dispatch, username, password) => {
     dispatch({ type: LOGIN_LOADING_REQUEST });
-    axios.post('/auth/login', {
-        username,
-        password
-    })
-    .then(res => {
-        dispatch({ type: LOGIN_LOADING_SUCCESS, payload: { jwtoken: res.data.accessToken, username } });
-    })
-    .catch(err => {
-        dispatch({ type: LOGIN_LOADING_FAIL, error: err.response.data.message || err.message });
-    });
+    return (
+        axios.post('/auth/login', {
+            username,
+            password
+        })
+        .then(res => {
+            dispatch({ 
+                type: LOGIN_LOADING_SUCCESS, 
+                payload: { 
+                    jwtoken: res.data.accessToken,
+                    expiresAt: res.data.expiresAt, 
+                    username 
+                } 
+            });
+            return {
+                jwtoken: res.data.accessToken,
+                expiresAt: res.data.expiresAt
+            }
+        })
+        .catch(err => {
+            dispatch({ 
+                type: LOGIN_LOADING_FAIL, 
+                error: err.response.data.message || err.message 
+            });
+        })
+    );
 }
 
 export const logOutUser = (dispatch) => {
-    // delete cookie!
-
-    dispatch({ type: LOGOUT });
+    return (
+        axios.post('/auth/logout')
+        .then(res => {
+            dispatch({ type: LOGOUT });
+        })
+        .catch(err => {
+            console.log("error while logging out: ");
+            console.log(err);
+        })
+    )
 }

@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { LISTS_LOADING_FAIL, LISTS_LOADING_REQUEST, LISTS_LOADING_SUCCESS } from '../constants/listsConstants';
+import { LISTS_CLEAR, LISTS_LOADING_FAIL, LISTS_LOADING_REQUEST, LISTS_LOADING_SUCCESS } from '../constants/listsConstants';
 
 export const getLists = async (dispatch, jwt) => {
     dispatch({ 
@@ -24,4 +24,8 @@ export const getLists = async (dispatch, jwt) => {
             error: err.message 
         });
     })
+}
+
+export const  clearLists = (dispatch) => {
+    dispatch({ type: LISTS_CLEAR });
 }

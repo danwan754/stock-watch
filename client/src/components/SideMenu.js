@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { getLists } from '../actions/getLists';
+import { getLists } from '../actions/Lists';
 
 import '../css/components/SideMenu.css';
 import { MainContext } from '../contexts/MainContext';
@@ -18,7 +18,7 @@ function SideMenu(props) {
         listDispatch({ type: LIST_MODAL_OPEN });
     }
 
-    const handleRefresh = () => {
+    const handleRefresh = async () => {
         getLists(listsDispatch, jwtoken);
     }
 

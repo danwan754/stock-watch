@@ -1,4 +1,7 @@
 import { createContext, useReducer } from "react";
+import { companyInitialState } from "../initialStates/company";
+import { companiesInitialState } from '../initialStates/companies';
+import { listsInitialState } from "../initialStates/lists";
 import { companiesReducer } from "../reducers/companiesReducer";
 import { companyReducer } from "../reducers/companyReducer";
 import { listsReducer } from "../reducers/listsReducer";
@@ -7,11 +10,11 @@ import { listsReducer } from "../reducers/listsReducer";
 
 export const MainContext = createContext();
 
-const companiesInitialState = {
-    loading: false,
-    companies: [],
-    error: null
-}
+// const companiesInitialState = {
+//     loading: false,
+//     companies: [],
+//     error: null
+// }
 
 // const loginInitialState = {
 //     loading: false,
@@ -20,19 +23,13 @@ const companiesInitialState = {
 //     error: null
 // }
 
-const listsInitialState = {
-    loading: false,
-    lists: [], // [{ listName: 'name1', stocks: [{ ticker: 'AAPL', companyName: 'Apple Inc' }]}]
-    error: null
-}
-
-const companyInitialState = {
-    loading: false,
-    company: '',
-    companyObj: {},
-    news: [],
-    error: null
-}
+// const companyInitialState = {
+//     loading: false,
+//     company: '',
+//     companyObj: {},
+//     news: [],
+//     error: null
+// }
 
 export const MainContextProvider = props => {
     const [companiesState, companiesDispatch] = useReducer(companiesReducer, companiesInitialState);

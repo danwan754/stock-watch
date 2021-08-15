@@ -53,7 +53,11 @@ function RegisterScreen(props) {
                     </div>
                     <Link to={{ 
                         pathname: '/login', 
-                        state: {email, password}
+                        state: {
+                            email, 
+                            password,
+                            from: 'register'    
+                        }
                     }}>
                         Proceed to log in.
                     </Link>

@@ -1,4 +1,5 @@
-import { LISTS_LOADING_REQUEST, LISTS_LOADING_SUCCESS, LISTS_LOADING_FAIL } from '../constants/listsConstants';
+import { LISTS_LOADING_REQUEST, LISTS_LOADING_SUCCESS, LISTS_LOADING_FAIL, LISTS_CLEAR } from '../constants/listsConstants';
+import { listsInitialState } from '../initialStates/lists';
 
 
 export const listsReducer = (state, action) => {
@@ -23,6 +24,9 @@ export const listsReducer = (state, action) => {
                 error: action.error
             }
         
+        case LISTS_CLEAR:
+            return listsInitialState;
+
         default:
             throw new Error();
     }

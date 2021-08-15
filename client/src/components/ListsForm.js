@@ -1,5 +1,5 @@
 import React, { useContext, useReducer, useState } from 'react';
-import { getLists } from '../actions/getLists';
+import { getLists } from '../actions/Lists';
 import { updateLists } from '../actions/updateLists';
 import { MainContext } from '../contexts/MainContext';
 import { companyToListReducer } from '../reducers/companyToListReducer';
@@ -7,7 +7,7 @@ import Loader from './Loader';
 import '../css/components/ListsForm.css';
 import { LoginContext } from '../contexts/LoginContext';
 
-function ListsForm(props) {
+const ListsForm = () => {
 
     const { 
         listsState,
@@ -26,8 +26,6 @@ function ListsForm(props) {
         const checkboxes = document.getElementById(`lists-form`).querySelectorAll('input[type="checkbox"]');
         await updateLists(Array.from(checkboxes), companyObj.symbol, listsUpdateDispatch, lists, jwtoken);
         listsUpdateState.error ? setSaved(false) : setSaved(true);
-        
-        //refresh lists
         await getLists(listsDispatch, jwtoken);
     }
 

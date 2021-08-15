@@ -23,8 +23,8 @@ function authenticateToken(req, res, next) {
 
   Jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) {
-      console.log(err);
-      res.sendStatus(403);
+      // console.log(err);
+      return res.sendStatus(403);
     }
     req.user = user;
     next();

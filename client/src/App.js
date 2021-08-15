@@ -11,27 +11,27 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="grid-container">
-        <header>
-          <div className="header-brand">
-            <Link to="/">Stock-Watch</Link>
-          </div>
-          <NavBar />
-        </header>
-        <main>
-          <div className="main-container">
-            <Route path="/" exact component={HomeScreen} />
-            <Route path="/quote" component={QuoteScreen} />
-            <Route path="/top" component={TopPickScreen} />
-            <Route path="/lists" component={ListsScreen} />
-            <Route path="/login" component={SignInScreen} />
-            <Route path="/register" component={RegisterScreen} />
-          </div>
-        </main>
-        <footer>
-          Developed by Dan Wan.
-        </footer>
-      </div>
+        <div className="grid-container">
+          <header>
+            <div className="header-brand">
+              <Link to="/">Stock-Watch</Link>
+            </div>
+            <NavBar />
+          </header>
+          <main>
+            <div className="main-container">
+              <Route path="/" exact component={HomeScreen} />
+              <Route path="/quote" component={QuoteScreen} />
+              <Route path="/top" component={TopPickScreen} />
+              <Route path="/lists" component={ListsScreen} />
+              <Route path="/login" component={SignInScreen} />
+              <Route path="/register" component={RegisterScreen} />
+            </div>
+          </main>
+          <footer>
+            Developed by Dan Wan.
+          </footer>
+        </div>
     </BrowserRouter>
   );
 }

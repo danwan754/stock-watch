@@ -8,7 +8,7 @@ import { MainContext } from '../contexts/MainContext';
 import { ListContext } from '../contexts/ListContext';
 import { updateListReducer } from '../reducers/updateListReducer';
 import { updateListInitialState } from '../initialStates/updateList';
-import { getLists } from '../actions/getLists';
+import { getLists } from '../actions/Lists';
 import { deleteList } from '../actions/deleteList';
 
 function ListEdit(props) {

@@ -49,14 +49,19 @@ router.post('/login', async (req, res) => {
     if (user) {
         const validPassword = await Bcrypt.compare(password, user.password);
         if (validPassword) {
-            const accessToken = generateAccessToken({ id: user.id });
-            const refreshToken = Jwt.sign({ id: user.id }, process.env.REFRESH_TOKEN_SECRET);
+            const accessToken = generateAccessToken({ id: user.id, name: username });
+            const refreshToken = Jwt.sign({ id: user.id, name: username }, process.env.REFRESH_TOKEN_SECRET);
             res.setHeader('Set-Cookie', Cookie.serialize('refreshToken', refreshToken, {
-                // httpOnly: true,
+                httpOnly: true,
+                sameSite: 'strict',
                 // secure: true,
                 maxAge: 60 * 60 * 24 * 7 * 52 // 1 year
             }));
-            res.json({ accessToken });
+            res.json({ 
+                accessToken, 
+                username, 
+                expiresAt: tokenExpireDateTime(parseInt(process.env.ACCESS_TOKEN_REFRESH_TIME_SECONDS))
+            });
         } else {
             res.status(401).json({ message: "Invalid login credentials."});
         }
@@ -73,19 +78,33 @@ router.post('/logout', (req, res) => {
 });
 
 router.post('/token', (req, res) => {
-    const refreshToken = req.body.token;
-    if (refreshToken == null) return res.sendStatus(401)
+    // const refreshToken = req.body.token;
+    // console.log(req.headers);
+    const cookies = Cookie.parse(req.headers.cookie || '');
+    const refreshToken = cookies.refreshToken;
+    if (!refreshToken) return res.sendStatus(401)
     Jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-      if (err) return res.sendStatus(403)
-      const accessToken = generateAccessToken({ id: user.id });
-      res.json({ accessToken: accessToken });
+        if (err) return res.sendStatus(403)
+        const accessToken = generateAccessToken({ id: user.id, name: user.name });
+        res.json({ 
+            accessToken, 
+            username: user.name,
+            expiresAt: tokenExpireDateTime(parseInt(process.env.ACCESS_TOKEN_REFRESH_TIME_SECONDS))
+        });
     });
 });
 
 
 function generateAccessToken(user) {
     return Jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRE_TIME });
-  }
+}
+
+function tokenExpireDateTime(lifeSeconds) {
+    const date = new Date();
+    // console.log(date);
+    date.setSeconds(date.getSeconds() + lifeSeconds);
+    return date.toISOString();
+}
 
 export default router;
 

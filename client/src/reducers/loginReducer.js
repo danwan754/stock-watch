@@ -1,4 +1,5 @@
 import { LOGIN_LOADING_FAIL, LOGIN_LOADING_REQUEST, LOGIN_LOADING_SUCCESS, LOGOUT } from '../constants/loginConstants';
+import { loginInitialState } from '../initialStates/login';
 
 export const loginReducer = (state, action) => {
     switch(action.type) {
@@ -14,23 +15,19 @@ export const loginReducer = (state, action) => {
                 ...state,
                 loading: false,
                 jwtoken: action.payload.jwtoken,
+                expiresAt: action.payload.expiresAt,
                 username: action.payload.username,
                 error: null
             };
 
         case LOGIN_LOADING_FAIL:
             return {
-                ...state,
-                loading: false,
+                ...loginInitialState,
                 error: action.error
             };
         case LOGOUT:
-            return {
-                ...state,
-                error: null,
-                username: '',
-                jwtoken: ''
-            }
+            return loginInitialState;
+            
         default:
             throw new Error();
     }
