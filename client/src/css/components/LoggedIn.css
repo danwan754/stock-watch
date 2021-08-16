@@ -1,0 +1,13 @@
+.logout-name {
+    /* border: solid 1px black; */
+}
+.logout-name > span {
+    display: flex;
+    gap: 5px;
+    /* border: solid 1px blue; */
+}
+
+.user-icon {
+    object-fit: contain;
+    height: 1.2em;
+}

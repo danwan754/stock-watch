@@ -4,8 +4,9 @@ import { clearLists } from '../actions/Lists';
 import { logOutUser } from '../actions/login';
 import { LoginContext } from '../contexts/LoginContext';
 import { MainContext } from '../contexts/MainContext';
+import '../css/components/LoggedIn.css';
 
-function LoggedIn(props) {
+const LoggedIn = (props) => {
 
     const { loginState, loginDispatch } = useContext(LoginContext);
     const { listsDispatch } = useContext(MainContext);
@@ -25,7 +26,13 @@ function LoggedIn(props) {
 
     return (
         <span className="logout-name">
-            <span onClick={() => setShowLogOut(!showLogOut)}>{loginState.username}</span>
+            <span onClick={() => setShowLogOut(!showLogOut)}>
+                <img 
+                    src='/user.png' 
+                    alt='user'
+                    className="user-icon" />
+                <span>{loginState.username}</span>
+            </span>
             {showLogOut ? <input type="button" className="logout-button" onClick={handleLogOut} value='log out' /> : ''}
         </span>
     )

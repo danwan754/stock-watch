@@ -1,15 +1,17 @@
 .header-links{
-    font-weight: bold;
+  display: flex;
+  
+  font-weight: bold;
 }
 .header-links a{
   margin: 0 2rem 0 2rem;
-  color: #8c8c8c;
+  color: #496bdb;
 }
 .header-links a:hover{
-  color: #339933;
+  color: #2c55a1;
 }
 .header-links a:focus{
-  color: #404040;
+  color: #2a418d;
 }
 
 .logout-name {
