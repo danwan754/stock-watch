@@ -2,6 +2,7 @@ import Dotenv from 'dotenv';
 Dotenv.config();
 
 import Express from 'express';
+import path from 'path';
 import Jwt from 'jsonwebtoken';
 
 import stockRouter from './routers/stockRouter.js';
@@ -9,6 +10,7 @@ import userRouter from './routers/userRouter.js';
 import authRouter from './routers/authRouter.js';
 
 const app = Express();
+const __dirname = process.cwd();
 
 app.use(Express.json());
 
@@ -31,8 +33,14 @@ function authenticateToken(req, res, next) {
   });
 }
 
+
+app.use(Express.static(path.join(__dirname, '/client/build')));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build/index.html'));
+});
+
 app.listen(process.env.PORT || 5000, () => {
-  console.log('Resource server running at http://localhost:5000');
+    console.log('Server started');
 });
 
 
