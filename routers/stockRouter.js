@@ -4,11 +4,14 @@ import Xml2js from 'xml2js';
 
 import url from '../url.js';
 import { cleanYahooNewsArray } from '../util.js';
-import { getCompanies } from '../data_access.js';
+// import { getCompanies } from '../db/mysql.js';
+import { getCompanies, insertCompany } from '../db/postgresql/postgresql.js';
+import axios from 'axios';
+
 
 let router = Express.Router();
 
-// get list of all companies listed on IEX
+// get list of all companies listed on IEX (stored in db)
 router.get('/companies', async (req, res) => {
     const companies = await getCompanies();
     if (companies) {
@@ -100,6 +103,21 @@ const hasTicker = (ticker, res) => {
         return ticker;
     }
 }
+
+
+// // updates the stock listing table with data from IEX
+// router.post('/dbupdate', (req, res) => {
+//     axios.get(url.companiesURL())
+//     .then(response => {
+//         for (const company of response.data) {
+//             insertCompany(company.symbol, company.name);
+//         }
+//         res.sendStatus(200);
+//     })
+//     .catch(err => {
+//         throw err;
+//     });
+// })
 
 
 export default router;

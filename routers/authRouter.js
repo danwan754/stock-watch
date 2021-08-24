@@ -6,9 +6,19 @@ import Jwt from 'jsonwebtoken';
 import Bcrypt from 'bcrypt';
 import Cookie from 'cookie';
 
-import { insertUser, getUser } from '../data_access.js';
+// import { insertUser, getUser } from '../db/mysql.js';
+import { insertUser, getUser, getSchemas } from '../db/postgresql/postgresql.js';
+
 
 const router = Express.Router();
+
+// ///// test
+// router.get('/schemas', async (req, res) => {
+//     const result = await getSchemas();
+//     console.log(result);
+//     res.sendStatus(200);
+// })
+
 
 router.post('/register', async (req, res) => {
     const username = req.body.username;

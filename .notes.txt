@@ -1,5 +1,7 @@
-// start mysql service
+// start db service
 sudo service mysql start
+sudo service postgresql start
 
-// open mysql prompt
+// open sql prompt
 mysql --user=root --password='password'
+sudo -u postgres psql

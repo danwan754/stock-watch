@@ -1,3 +1,7 @@
+--
+--MYSQL
+--
+
 -- create database
 CREATE DATABASE stock_tracker;
 
@@ -5,8 +9,8 @@ CREATE DATABASE stock_tracker;
 -- create user table
 CREATE TABLE Users (
     id SMALLINT UNSIGNED AUTO_INCREMENT,
-    username VARCHAR(30) NOT NULL,
-    password VARCHAR(30) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
     PRIMARY KEY (id)
 );
 

@@ -6,7 +6,7 @@ import Jwt from 'jsonwebtoken';
 import Bcrypt from 'bcrypt';
 import Cookie from 'cookie';
 
-import { insertUser, getUser } from './data_access.js';
+import { insertUser, getUser } from './db/mysql.js';
 
 const app = Express();
 

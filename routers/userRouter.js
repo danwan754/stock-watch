@@ -2,17 +2,17 @@ import axios from 'axios';
 import Express from 'express';
 
 import url from '../url.js';
-import { addTicker, deleteTicker, getLists, insertList, deleteList, updateListName } from '../data_access.js';
+// import { addTicker, deleteTicker, getLists, insertList, deleteList, updateListName } from '../db/mysql.js';
+import { addTicker, deleteTicker, getLists, insertList, deleteList, updateListName } from '../db/postgresql/postgresql.js';
 
 let router = Express.Router();
 
 // return all lists belonging to user
 router.get('/lists', async (req, res) => {
     let listRecords = await getLists(req.user.id);
-    // console.log(listRecords);
     
     function getBatchQuotes(arr) {
-        return axios.get(url.batchQuoteURL(arr.join()))
+        return axios.get(url.batchQuoteURL(arr))
             .then(response => {
                 return response.data;
             });
@@ -32,9 +32,6 @@ router.get('/lists', async (req, res) => {
         console.log(err);
         res.sendStatus(500);
     });
-
-    // res.status(200).json(listRecords);
-    // res.status(200).json(resultArr);
 });
 
 // create new list
@@ -57,8 +54,15 @@ router.put('/list/put/name', async (req, res) => {
     const { list_id, title } = req.body;
     const uid = req.user.id;
     if (list_id) {
-        updateListName(uid, list_id, title);
-        res.sendStatus(204);
+        await updateListName(uid, list_id, title)
+        .then(() => {
+            res.sendStatus(204);
+        }, () => {
+            res.status(400).json({ message: "Could not update list name." });
+        })
+        .catch(err => {
+            res.sendStatus(500);
+        });
     } else {
         res.status(400).json({ message: "Require list id and new name/title."});
     }
@@ -96,8 +100,15 @@ router.delete('/ticker/remove', async (req, res) => {
     const { list_id, tickers } = req.query;
     const uid = req.user.id;
     if (list_id && tickers) {
-        await deleteTicker(uid, list_id, tickers.split(','));
-        res.sendStatus(204);
+        await deleteTicker(uid, list_id, tickers.split(','))
+        .then(() => {
+            res.sendStatus(204);
+        }, () => {
+            res.status(400).json({ message: "Could not delete ticker name. Ticker not found in list." });
+        })
+        .catch(err => {
+            res.sendStatus(500);
+        });
     } else {
         res.status(400).json({ error: "Request to delete item requires list ID and ticker(s)" });
     }

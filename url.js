@@ -3,6 +3,7 @@ Dotenv.config();
 
 const KEY = process.env.IEX_API_KEY;
 
+
 const companyURL = (ticker) => {
     return `https://cloud.iexapis.com/stable/stock/${ticker}/company?token=${KEY}`;
 }
@@ -12,6 +13,7 @@ const quoteURL = (ticker) => {
 }
 
 const batchQuoteURL = (tickers) => {
+    tickers = encodeURIComponent(tickers);
     return `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickers}&types=quote&token=${KEY}`;
 }
 
