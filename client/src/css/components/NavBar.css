@@ -30,9 +30,9 @@
 
 .logout-button {
   position: absolute;
-  width: 100%;
+  width: 80px;
   bottom: -32px;
-  left: 0;
+  right: 0;
   font-weight: 600;
   text-align: center;
   padding: .2em;

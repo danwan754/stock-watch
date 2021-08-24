@@ -11,7 +11,6 @@ export const getLists = async (dispatch, jwt) => {
         }
     })
     .then(res => {
-        // console.log(res.data);
         dispatch({ 
             type: LISTS_LOADING_SUCCESS, 
             payload: res.data

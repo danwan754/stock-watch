@@ -11,3 +11,7 @@
     object-fit: contain;
     height: 1.2em;
 }
+
+#user-link * {
+    pointer-events: none;
+}

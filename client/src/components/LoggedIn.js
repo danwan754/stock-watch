@@ -24,9 +24,32 @@ const LoggedIn = (props) => {
         });
     }
 
+    // const handleOutsideClick = (e) => {
+    //     if (!e.target.id == 'user-link') {
+    //         console.log('outside click');
+    //         handleClick(e);
+    //     } else {
+    //         console.log('other');
+    //     }
+    // }
+
+    // const handleClick = (e) => {
+    //     if (e.target.id == 'user-link' && !showLogOut) {
+    //         console.log('open');
+    //         document.addEventListener("click", handleOutsideClick, false);
+    //     } else {
+    //         console.log('close');
+    //         document.removeEventListener("click", handleOutsideClick, false);
+    //     }
+    //     setShowLogOut(!showLogOut);
+    // }
+
     return (
         <span className="logout-name">
-            <span onClick={() => setShowLogOut(!showLogOut)}>
+            <span 
+                id="user-link"
+                onClick={() => setShowLogOut(!showLogOut)}>
+                {/* onClick={handleClick}> */}
                 <img 
                     src='/user.png' 
                     alt='user'
