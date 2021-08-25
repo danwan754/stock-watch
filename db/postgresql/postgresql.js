@@ -3,23 +3,22 @@ import * as pg from 'pg';
 const { Pool } = pg.default;
 // console.log(pg.default.Pool);
 
-// local db
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT
-});
-// console.log(pool);
-
-// // if production mode
+// // local db
 // const pool = new Pool({
-//     connectionString: process.env.DATABASE_URL,
-//     ssl: {
-//       rejectUnauthorized: false
-//     }
+//   user: process.env.DB_USER,
+//   host: process.env.DB_HOST,
+//   database: process.env.DB_NAME,
+//   password: process.env.DB_PASSWORD,
+//   port: process.env.DB_PORT
 // });
+
+// if production mode
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+});
 
 // query wrapper; potentially used for logging
 const query = (SQLText, paramsArr, callback) => {
