@@ -106,13 +106,13 @@ const hasTicker = (ticker, res) => {
 
 
 // // updates the stock listing table with data from IEX
-// router.post('/dbupdate', (req, res) => {
+// router.post('/dbupdate', async (req, res) => {
 //     axios.get(url.companiesURL())
 //     .then(response => {
 //         for (const company of response.data) {
-//             insertCompany(company.symbol, company.name);
+//             await insertCompany(company.symbol, company.name);
 //         }
-//         res.sendStatus(200);
+//         res.status(200).send("Finished updating database.");
 //     })
 //     .catch(err => {
 //         throw err;
