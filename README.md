@@ -1,6 +1,8 @@
 ## Stock tracker
 
 Make watchlists of stocks to track. Create an account to save your watchlists.
+<br>\
+demo: https://stock-watch-demo.herokuapp.com/
 <br>
 <br>
 <br>
@@ -19,15 +21,18 @@ On the commandline:
 2. Connect to MySQL in commandline:
 > mysql --user=*username/root* --password=*password*
 
-3. Copy the SQL commands found in **.db.sql** and paste into commandline.
+3. Copy the SQL commands found in **/mysql/.db.sql** and paste into commandline.
   These commands will:  
     i. create database\
     ii. create tables: Users, Stocks, Lists, List_items
     
-The *Stocks* database table needs to be populated with data from:\
-*https://cloud.iexapis.com/stable/ref-data/symbols?token=API_KEY* \
-Only the company name and ticker will be stored in the table.
+4. The *Stocks* database table needs to be populated with data of all company names and ticker symbols.\
+  i. In **/routers/stockRouter.js**, go to the end of the file and uncomment the */dbupdate* route.\
+  ii. In the browser, go to this path: http://localhost:5000/dbupdate \
+  iii. After several seconds, the page will display message: "Finished updating database".\
+  iV. Comment out the */dbupdate* route like it was originally.\
 
+The app is now ready to be used.
 
 #### Start Dev Mode
 Server:\
