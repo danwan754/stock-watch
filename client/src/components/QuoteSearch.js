@@ -11,13 +11,7 @@ function QuoteSearch(props) {
     const [search, setSearch] = useState('');
     const [companies, setCompanies] = useState([]);
 
-    const { companiesState, companiesDispatch, companyDispatch } = useContext(MainContext);
-
-    useEffect(() => {
-        if (!companiesState.companies.length > 0) {
-            getCompanies(companiesDispatch);
-        }
-    }, []);
+    const { companiesState, companyDispatch } = useContext(MainContext);
 
     const resetSearch = () => {
         setSearch('');
