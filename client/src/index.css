@@ -21,7 +21,8 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: .1rem solid #339966;
+  border-bottom: .1rem solid #3d7eb3;
+  box-shadow: 0 0 3px;
 }
 header a {
   text-decoration: none;
