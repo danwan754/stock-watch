@@ -34,6 +34,10 @@ function QuoteSearch(props) {
         setCompanies([]);
     }
 
+    const selectText = (e) => {
+        e.target.select();
+    }
+
     return (
         <div className="search-bar-container">
             <div className="search-input-container">
@@ -41,7 +45,13 @@ function QuoteSearch(props) {
                     Company:
                 </label>
                 <div className="search-input-and-reset-container">
-                    <input type="text" onChange={updateSearch} value={search} className="searchInput" />
+                    <input 
+                        type="text" 
+                        onChange={updateSearch} 
+                        onClick={selectText}
+                        value={search} 
+                        className="searchInput" 
+                    />
                     {search && <input type="button" value="x" onClick={resetSearch} className="searchInput-reset" />}
                 </div>
             </div>
