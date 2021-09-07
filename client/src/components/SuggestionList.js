@@ -5,7 +5,7 @@ import '../css/components/SuggestionList.css';
 function SuggestionList(props) {
 
     const { companies, handleSelect } = props; 
-    const [cursor, setCursor] = useState(0);
+    const [cursor, setCursor] = useState(-1);
 
     useEffect(() => {
         window.addEventListener("keydown", handleKeyDown);

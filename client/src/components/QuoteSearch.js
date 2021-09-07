@@ -25,6 +25,9 @@ function QuoteSearch(props) {
     }
 
     const handleSelect = (index) => {
+        if (index < 0) {
+            return;
+        }
         const { ticker, company } = companies[index];
         getCompany(companyDispatch, ticker);
         setSearch(`(${ticker}) ${company}`);
