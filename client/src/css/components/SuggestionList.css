@@ -1,4 +1,19 @@
 .suggestionList {
     width: 100%;
-    /* border: solid black 1px; */
+    padding-bottom: .5em;
+    border-bottom: solid 1px rgba(145, 141, 141, 0.3);
+    /* border: solid rgb(197, 190, 190) 1px; */
+}
+
+.suggestion-item {
+    padding: .15em;
+}
+.suggestion-item:hover {
+    background-color: #cce6ff;
+}
+.suggestion-item:active {
+    background-color: #b3daff;
+}
+.item-focused {
+    background-color: #cce6ff;
 }

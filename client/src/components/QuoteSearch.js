@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
-import getCompanies from '../actions/getCompanies';
+import React, { useContext, useState } from 'react';
+
 import { MainContext } from '../contexts/MainContext';
 import { searchOccurrences } from '../util/quoteHelper';
-
 import SuggestionList from '../components/SuggestionList';
 import { getCompany } from '../actions/getCompany';
+import '../css/components/QuoteSearch.css';
 
 function QuoteSearch(props) {
 
@@ -24,13 +24,10 @@ function QuoteSearch(props) {
         setCompanies(searchOccurrences(val, companiesState.companies, 5));
     }
 
-    const handleSelect = (event) => {
-        // const regex = /(?<=\().*(?=\))/;
-        const regex = /(?<=\()[^\)]*/;
-        const ticker = event.target.textContent.match(regex);
-        // console.log(ticker);
+    const handleSelect = (index) => {
+        const { ticker, company } = companies[index];
         getCompany(companyDispatch, ticker);
-        setSearch(event.target.textContent);
+        setSearch(`(${ticker}) ${company}`);
         setCompanies([]);
     }
 
