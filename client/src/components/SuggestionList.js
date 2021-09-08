@@ -4,7 +4,7 @@ import '../css/components/SuggestionList.css';
 
 function SuggestionList(props) {
 
-    const { companies, handleSelect } = props; 
+    const { companies, handleSelect, setCompanies } = props; 
     const [cursor, setCursor] = useState(-1);
 
     useEffect(() => {
@@ -14,6 +14,20 @@ function SuggestionList(props) {
             window.removeEventListener("keydown", handleKeyDown);
         }
     }, [cursor]);
+
+    useEffect(() => {
+        document.addEventListener("click", handleOutterClick);
+
+        return () => {
+            document.removeEventListener("click", handleOutterClick);
+        }
+    });
+
+    const handleOutterClick = (e) => {
+        if (!e.target.closest('.suggestionList')) {
+            setCompanies([]);
+        }
+    }
 
     const handleKeyDown = (e) => {
         if (e.keyCode === 40) {

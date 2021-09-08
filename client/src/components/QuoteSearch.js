@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { MainContext } from '../contexts/MainContext';
 import { searchOccurrences } from '../util/quoteHelper';
@@ -55,7 +55,7 @@ function QuoteSearch(props) {
                     {search && <input type="button" value="x" onClick={resetSearch} className="searchInput-reset" />}
                 </div>
             </div>
-            {companies.length > 0  && <SuggestionList companies={companies} handleSelect={handleSelect} />}
+            {companies.length > 0  && <SuggestionList companies={companies} handleSelect={handleSelect} setCompanies={setCompanies} />}
         </div> 
     )
 }
