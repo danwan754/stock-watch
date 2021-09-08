@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { getLists } from '../actions/Lists';
+import getCompanies from '../actions/getCompanies';
 import { MainContext } from '../contexts/MainContext';
 import QuoteModal from '../components/QuoteModal';
 import Loader from '../components/Loader';
@@ -12,14 +14,15 @@ import SideMenu from '../components/SideMenu';
 import NewListModal from '../components/NewListModal';
 import { ListContextProvider } from '../contexts/ListContext';
 import { getCompany } from '../actions/getCompany';
-import { useHistory } from 'react-router-dom';
 
 const ListsScreen = () => {
     const { 
         listsState, 
         listsDispatch, 
         companyState, 
-        companyDispatch } = useContext(MainContext);
+        companyDispatch,
+        companiesState,
+        companiesDispatch } = useContext(MainContext);
     const { loginState } = useContext(LoginContext);
     const { lists } = listsState;
     const history = useHistory();
@@ -32,6 +35,12 @@ const ListsScreen = () => {
             history.push('/login');
         }
     },[loginState.username]);
+
+    useEffect(() => {
+        if (!companiesState.companies.length > 0) {
+            getCompanies(companiesDispatch);
+        }
+    }, []);
 
     const handleSelectCompany = (e) => {
         getCompany(companyDispatch, e.target.dataset.ticker);
