@@ -7,11 +7,19 @@ import ListsScreen from './screens/ListsScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import NavBar from './components/NavBar';
 
+const backgroundStyle = {
+  // backgroundImage: `linear-gradient(rgba(255,255,255,0.0), rgba(255,255,255,0.0)), url('/home-stock-market.jpg')`
+  backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/home-stock-market.jpg')`
+}
+
 function App() {
 
   return (
     <BrowserRouter>
-        <div className="grid-container">
+        <div 
+          className="grid-container"
+          style={ backgroundStyle }
+        >
           <header>
             <div className="header-brand">
               <Link to="/">Stock-Watch</Link>
