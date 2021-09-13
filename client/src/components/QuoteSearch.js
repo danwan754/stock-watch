@@ -41,14 +41,12 @@ function QuoteSearch(props) {
     return (
         <div className="search-bar-container">
             <div className="search-input-container">
-                <label>
-                    Company:
-                </label>
                 <div className="search-input-and-reset-container">
                     <input 
                         type="text" 
                         onChange={updateSearch} 
                         onClick={selectText}
+                        placeholder="Company"
                         value={search} 
                         className="searchInput" 
                     />
