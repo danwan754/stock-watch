@@ -14,7 +14,7 @@ function NavBar(props) {
             { loginState.username ? (
                 <React.Fragment>
                     <Link to="/lists">Watch-Lists</Link>
-                    <Link to="/top">Top-Picks</Link>
+                    {/* <Link to="/top">Top-Picks</Link> */}
                     <LoggedIn />
                 </React.Fragment>
             ) : (

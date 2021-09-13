@@ -5,13 +5,13 @@
 }
 .header-links a{
   margin: 0 2rem 0 2rem;
-  color: #496bdb;
+  color: white;
 }
 .header-links a:hover{
-  color: #2c55a1;
+  color: rgb(218, 214, 214);
 }
 .header-links a:focus{
-  color: #2a418d;
+  color: rgb(175, 175, 174);
 }
 
 .logout-name {
