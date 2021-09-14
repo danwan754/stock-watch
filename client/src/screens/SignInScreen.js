@@ -37,25 +37,34 @@ const SignInScreen = () => {
 
     return (
         <div className="sign-in-screen">
-            {/* {!loginState.jwtoken ? <Auth /> : ( */}
-                <React.Fragment>
-                    <p className="login-error">{loginState.error || '' }</p>
-                    { loginState.loading ? <Loader /> : (
-                        <div className="sign-in-container">
-                            <h4>Log In</h4>
-                            <form onSubmit={handleSubmit}>
-                                <label>Email / Username: </label><br/>
-                                <input type='text' onChange={handleChangeEmail} value={email} /><br/><br/>
-                                <label>Password: </label><br/>
-                                <input type='password' onChange={handleChangePassword} value={password} /><br/>
-                                <input type='submit' value='Log in' className="log-in-submit" />
-                            </form>
-                            <p>Don't have an account? <Link to='/register'>Register now.</Link></p>
-                            { loginState.loading ? <Loader /> : ''}
-                        </div>
-                    )}
-                </React.Fragment>
-            {/* )} */}
+            <React.Fragment>
+                {loginState.error ? <p className="login-error">{loginState.error}</p> : ''}
+                { loginState.loading ? <Loader /> : (
+                    <div className="sign-in-container">
+                        <h4>Log In</h4>
+                        <form onSubmit={handleSubmit}>
+                            {/* <label>Email / Username: </label><br/> */}
+                            <input 
+                                type='text' 
+                                onChange={handleChangeEmail} 
+                                placeholder='Email / Username'
+                                value={email} /><br/><br/>
+                            {/* <label>Password: </label><br/> */}
+                            <input 
+                                type='password' 
+                                onChange={handleChangePassword}
+                                placeholder='Password'
+                                value={password} /><br/><br/><br/>
+                            <input 
+                                type='submit' 
+                                value='Log in' 
+                                className="log-in-submit" />
+                        </form>
+                        <p>Don't have an account? <Link to='/register'>Register now.</Link></p>
+                        { loginState.loading ? <Loader /> : ''}
+                    </div>
+                )}
+            </React.Fragment>
         </div>
     );
 }

@@ -7,48 +7,74 @@
 }
 
 .sign-in-container {
-    position: relative;
     padding: 1.5em 2em 1.5em 2em;
     box-shadow: 0 0 3px black;
     border-radius: 8px;
     width: 400px;
+    height: 325px;
+
+    color: white;
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	border-top: solid 0.5px white;
+    border-left: solid 0.5px white;
 }
 .sign-in-container h4 {
     margin: 0 0 2em 0;
 }
 .sign-in-container input {
     border-radius: 5px;
-    border: 1px solid black;
     outline: none;
     padding: .5em;
     margin: .5em 0 .5em 0;
     width: 100%;
+    border: none;
+    color: white;
+	background-color: rgba(255, 255, 255, 0.15);
+    border-top: solid 0.25px white;
+    border-left: solid 0.25px white;
 }
 .sign-in-container input:focus {
-    box-shadow: 0 0 3px #000;
+    box-shadow: 0 0 3px rgb(255, 255, 255);
+}
+.sign-in-container > p {
+    text-align: center;
+}
+.sign-in-container > p > a {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+    text-decoration: none;
+}
+.sign-in-container > p > a:hover {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .log-in-submit {
-    border: 2px blue solid;
-    /* width: 100%; */
     font-weight: 700;
-    background-color: rgb(37, 107, 37);
-    color: white;
-
+    background-color: rgba(37, 107, 37, 0.6) !important;
 }
 .log-in-submit:hover {
     cursor: pointer;
-    background-color: white;
-    color: rgb(37, 107, 37);
-    border: rgb(37, 107, 37) 2px solid;
+    background-color: rgba(37, 107, 37, 0.75) !important;
+    color: rgba(255,255,255, 0.75) !important;
 }
 .log-in-submit:active {
-    background-color: rgb(37, 107, 37);
+    background-color: rgb(37, 107, 37, 0.9) !important;
 }
 
 .login-error {
-    color: rgb(182, 43, 43);
     font-weight: 600;
+    border-radius: 5px;
+    padding: .5em;
+
+    border: none;
+    color: red;
+    text-shadow: 0 0 1px black;
+	background-color: rgba(255, 255, 255, 0.3);
+    border-top: solid 0.25px white;
+    border-left: solid 0.25px white;
 }
 
 .register-success-img {
