@@ -28,7 +28,7 @@ function QuoteScreen(props) {
                         <QuoteDetails company={companyState.companyObj} />
                     </div>
                     <div className="quote-results-wrapper">
-                        {/* <QuoteNews news={news} /> */}
+                        {/* <QuoteNews news={companyState.news} /> */}
                         <QuoteNewsYahoo news={companyState.news} />
                     </div>
                 </React.Fragment>
