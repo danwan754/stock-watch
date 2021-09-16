@@ -1,3 +1,4 @@
+@import '../common/price.css';
 
 .list-container {
     list-style: none;
@@ -5,6 +6,14 @@
     padding: .75em 0 .75em 0;
     border-radius: 7px;
     box-shadow: 0 0 .2em;
+
+    color: white;
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	border-top: solid 0.5px white;
+    border-left: solid 0.5px white;
 }
 .list-container li {
     font-weight: 600;
@@ -12,7 +21,6 @@
 }
 .list-title {
     padding: .5em;
-    /* padding: 0; */
     margin: 0;
     font-size: 1.1em;
 }
@@ -34,10 +42,10 @@
     align-items: center;
 }
 .list-item:hover {
-    background-color: rgb(222, 234, 245);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 .list-item:active {
-    background-color: rgb(205, 220, 233);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 .list-item input {
     margin: 0 1em 0 1em;
@@ -47,36 +55,55 @@
     display: flex;
     justify-content: space-between;
     font-weight: 600;
-    /* border: 1px red solid; */
 }
 .list-title-edit {
     text-align: center;
 }
-.list-title-edit input:first-child {
+.list-title-edit input {
+    color: rgb(255, 231, 231);
+    padding: .25em;
     margin: .5em;
     width: 92%;
     height: 2em;
     font-weight: 600;
     font-size: 1em;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+
+    background-color: rgba(255, 255, 255, 0.1);
 }
+.list-title-edit input:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.list-title-edit input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 2px white;
+}
+
 .list-edit-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: .1em 1em .5em 1em;
 }
-.list-edit-header  input {
+.list-edit-header input {
     height: 2em;
-    /* padding: .em; */
     border-radius: 5px;
     border: none;
-    /* background-color: rgb(208, 221, 240); */
 }
-.list-edit-header > input:hover {
-    background-color: rgb(220, 228, 241);
+.edit-back-button {
+    border: none;
+    background-color: rgba(208, 221, 240, 0.15);
 }
-.list-edit-header > input:active {
-    background-color: rgb(223, 226, 230);
+.edit-back-button:hover {
+    background-color: rgba(220, 228, 241, 0.2);
+}
+.edit-back-button:active {
+    background-color: rgba(223, 226, 230, 0.25);
+}
+.edit-save-button {
+    /* width: 20px; */
 }
 
 .list-edit-header img {
@@ -87,16 +114,16 @@
     cursor: pointer;
 }
 .list-title > span:first-child{
-    color: rgb(58, 58, 180);
+    color: rgb(179, 179, 253);
 }
 
 .price-container {
     text-align: right;
-    /* border: 1px solid black; */
 }
 
 .price-current {
-    color: rgb(34, 64, 163);
+    color: rgb(173, 191, 253);
+    text-shadow: 0 0 1px black;
 }
 .price-change {
     font-size: .9em;
@@ -106,12 +133,15 @@
     width: 20px;
     object-fit: contain;
     position: relative;
-    /* border: solid black 1px; */
     display: inline-block;
+    /* border: 1px solid red; */
+}
+.edit-trash-button {
+    /* width: 20px; */
 }
 .tooltip-delete {
     /* visibility: hidden; */
-    background-color: rgb(241, 184, 184);
+    background-color: rgba(241, 184, 184, 0.4);
     position: absolute;
     z-index: 1;
     bottom: 110%;
@@ -121,22 +151,27 @@
     padding: .5em;
     border-radius: 6px;
     width: 150px;
-    /* border: 1px black solid; */
 }
 .tooltip-delete input {
-    margin: .5em;   
+    margin: .5em;
 }
 .confirmed-delete-button {
-    background-color: rgb(199, 55, 55);   
+    background-color: rgba(199, 55, 55, 0.5);
     color: white;
 }
 .confirmed-delete-button:hover {
-    background-color: rgb(146, 37, 37);   
+    background-color: rgba(128, 27, 27, 0.5); 
+}
+.confirmed-delete-button:active {
+    background-color: rgba(128, 27, 27, 0.2); 
 }
 .cancel-delete-button {
-    background-color: rgb(113, 133, 204);
+    background-color: rgb(113, 133, 204, 0.5);
     color: white;
 }
 .cancel-delete-button:hover {
-    background-color: rgb(96, 112, 172);
+    background-color: rgba(48, 73, 167, 0.5);
+}
+.cancel-delete-button:active {
+    background-color: rgba(48, 73, 167, 0.2);
 }

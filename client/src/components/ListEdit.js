@@ -62,7 +62,12 @@ function ListEdit(props) {
             {/* <form onSubmit={handleFormSubmit} id="updateListForm"> */}
                 <ul className="list-container" id={`list-container${list.id}`}>
                     <li className="list-edit-header"> 
-                        <input type='button' value='<' onClick={()=>props.setIsEdit(false)} />
+                        <input 
+                            type='button' 
+                            value='<' 
+                            onClick={()=>props.setIsEdit(false)}
+                            className="edit-back-button"
+                        />
                         <span>Edit</span>
                         <div className='list-edit-trash'>
                             <input
@@ -70,7 +75,8 @@ function ListEdit(props) {
                                 src='delete.png' 
                                 alt='delete'
                                 onClick={toggleShowDelete}
-                                 />
+                                className="edit-trash-button"
+                            />
                             {showDelete ? (
                                 <div className='tooltip-delete'>
                                     <div>Delete this list?</div>
@@ -92,7 +98,8 @@ function ListEdit(props) {
                                 type='image'
                                 src='save.png'
                                 alt='save'
-                                onClick={handleFormSubmit} />
+                                onClick={handleFormSubmit}
+                                className="edit-save-button" />
                         }
                     </li>
                     <li className="list-title-edit" key={`${list.id}title`}>

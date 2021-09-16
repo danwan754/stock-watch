@@ -6,8 +6,8 @@
 .lists-outter-container {
     display: flex;
     justify-content: space-between;
-    /* margin: 1em 3em 1em 3em; */
-    /* border: 1px red solid; */
+    margin: 1.5em 0 1em 0;
+    /* border-radius: 5px; */
 }
 
 .side-menu-container {
