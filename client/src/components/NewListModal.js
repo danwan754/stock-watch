@@ -37,25 +37,27 @@ function NewListModal(props) {
     return (
         <div className={`new-list-modal-container ${isOpen ? 'show-modal' : 'hide-modal'}`}>
         <div className={`modal`}>
-            <div className="modal-content">
-                <div className="modal-heading">
-                    <h4>New List</h4>
-                    <span className="close" onClick={handleClose}>&times;</span>
+            <div className='modal-content-wrapper'>
+                <div className="modal-content">
+                    <div className="modal-heading">
+                        <h4>New List</h4>
+                        <span className="close" onClick={handleClose}>&times;</span>
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            Name: &nbsp;
+                        </label>
+                        <input 
+                            type='text' 
+                            className='new-list-name-input' 
+                            onChange={handleNameChange}
+                            value={listName} />
+                        <input 
+                            type='submit' 
+                            className='new-list-name-submit' 
+                            value='Done' />
+                    </form>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Name: &nbsp;
-                    </label>
-                    <input 
-                        type='text' 
-                        className='new-list-name-input' 
-                        onChange={handleNameChange}
-                        value={listName} />
-                    <input 
-                        type='submit' 
-                        className='new-list-name-submit' 
-                        value='Done' />
-                </form>
             </div>
         </div>
         </div>

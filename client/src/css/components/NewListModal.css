@@ -18,30 +18,58 @@
     width: 100%;
     height: 100%;
     background-color: rgb(157, 150, 216); /* Fallback color */
-    background-color: rgba(177, 191, 223, 0.6); /* Black w/ opacity */
+    background-color: rgba(255, 255, 225, 0.5); /* Black w/ opacity */
 }
 
-/* Modal Content */
+.modal-content-wrapper {
+    background-color: rgb(37, 37, 85);
+    border: none;
+    border-radius: 5px;
+}
+
+
 .modal-content {
     background-color: #fefefe;
     padding: 1em;
-    border-radius: 7px;
-    border: none;
-    box-shadow: 0 0 10px rgb(58, 58, 129);
+    border-radius: 5px;
     width: 400px;
     height: 90px;
+
+    
+    color: white;
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border: none;
+	border-top: solid 1px white;
+    border-left: solid 1px white;
 }
+.modal-content input {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 225, 0.2);
+    color: white;
+    height: 1.5em;
+}
+
 .new-list-name-input {
     width: 250px;
+    padding-left: .25em;
+    margin: 0 .25em 0 0;
 }
 .new-list-name-input:focus {
-    border: none;
     box-shadow: 0 0 2px;
 }
-.new-list-name-submit {
-    /* border-radius: 5px;
-    border: none; */
+
+.new-list-name-submit:hover {
+    background-color: rgba(255, 255, 225, 0.3);
 }
+.new-list-name-submit:active {
+    background-color: rgba(255, 255, 225, 0.4);
+}
+
 .show-modal {
     display: flex;
     /* display: block; */
@@ -76,7 +104,7 @@
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: white;
     text-decoration: none;
     cursor: pointer;
 }
