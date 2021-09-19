@@ -41,27 +41,25 @@ function Slideshow() {
         style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
       >
         {slides.map((slide, index) => (
-            // <img
-            //     key={index}
-            //     className="slide-image slide"
-            //     src={slide}
-            //     // style={{ content: `url(${slide})`}}
-            //     alt="slide image"
-            //     onMouseOver={resetTimeout}
-            //     onMouseOut={startTimeout}
-            // />
-          <div 
-            className="slide-background-image-container"
-            key={index}
-          >
-            <div
-              className="slide2"
-              style={{ backgroundImage: `url(${slide})`}}
-              // style={{ backgroundImage: "url('/slide-edit.png')"}}
-              onMouseOver={resetTimeout}
-              onMouseOut={startTimeout}
-            ></div>
-          </div>
+            <img
+                key={index}
+                className="slide-image slide"
+                src={slide}
+                alt="slide image"
+                onMouseOver={resetTimeout}
+                onMouseOut={startTimeout}
+            />
+          // <div 
+          //   className="slide-background-image-container"
+          //   key={index}
+          // >
+          //   <div
+          //     className="slide2"
+          //     style={{ backgroundImage: `url(${slide})`}}
+          //     onMouseOver={resetTimeout}
+          //     onMouseOut={startTimeout}
+          //   ></div>
+          // </div>
         ))}
       </div>
 
