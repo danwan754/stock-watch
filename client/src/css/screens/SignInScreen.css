@@ -7,11 +7,11 @@
 }
 
 .sign-in-container {
-    padding: 1.5em 2em 1.5em 2em;
+    padding: 1em 2em 1em 2em;
     box-shadow: 0 0 3px black;
     border-radius: 8px;
     width: 400px;
-    height: 325px;
+    /* height: 325px; */
 
     color: white;
 	background-color: rgba(255, 255, 255, 0.1);
