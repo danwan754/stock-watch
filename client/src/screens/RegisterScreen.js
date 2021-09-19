@@ -64,7 +64,7 @@ function RegisterScreen(props) {
                 </React.Fragment>
             ) : (
             <React.Fragment>
-                <p className="login-error">{registerState.error || '' }</p>
+                { registerState.error ? <p className="login-error">{registerState.error}</p> : '' }
                 { registerState.loading ? <Loader /> : (
                     <div className="sign-in-container">
                         <h4>Register</h4>
@@ -74,7 +74,7 @@ function RegisterScreen(props) {
                             <label>Password: </label><br/>
                             <input type='password' onChange={handleChangePassword} /><br/><br/>
                             <label>Confirm password: </label><br/>
-                            <input type='password' onChange={handleChangeConfirmPassword} /><br/>
+                            <input type='password' onChange={handleChangeConfirmPassword} /><br/><br/>
                             <input type='submit' value='Register' className="log-in-submit" />
                         </form>
                         <p>Already registered? <Link to='/login'>Log in.</Link></p>
