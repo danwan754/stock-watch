@@ -1,4 +1,4 @@
-import { LOGIN_LOADING_FAIL, LOGIN_LOADING_REQUEST, LOGIN_LOADING_SUCCESS, LOGOUT } from '../constants/loginConstants';
+import { LOGIN_LOADING_FAIL, LOGIN_LOADING_REQUEST, LOGIN_LOADING_SUCCESS, LOGOUT, RESET_ERROR } from '../constants/loginConstants';
 import { loginInitialState } from '../initialStates/login';
 
 export const loginReducer = (state, action) => {
@@ -27,6 +27,12 @@ export const loginReducer = (state, action) => {
             };
         case LOGOUT:
             return loginInitialState;
+
+        case RESET_ERROR:
+            return {
+                ...state,
+                error: loginInitialState.error
+            }
             
         default:
             throw new Error();

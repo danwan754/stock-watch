@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_LOADING_FAIL, LOGIN_LOADING_REQUEST, LOGIN_LOADING_SUCCESS, LOGOUT } from "../constants/loginConstants";
+import { LOGIN_LOADING_FAIL, LOGIN_LOADING_REQUEST, LOGIN_LOADING_SUCCESS, LOGOUT, RESET_ERROR } from "../constants/loginConstants";
 
 export const loginUser = (dispatch, username, password) => {
     dispatch({ type: LOGIN_LOADING_REQUEST });
@@ -29,6 +29,10 @@ export const loginUser = (dispatch, username, password) => {
             });
         })
     );
+}
+
+export const resetLoginError = (dispatch) => {
+    dispatch({ type: RESET_ERROR });
 }
 
 export const logOutUser = (dispatch) => {

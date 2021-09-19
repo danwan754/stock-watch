@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import Loader from '../components/Loader';
-import { loginUser } from '../actions/login';
+import { loginUser, resetLoginError } from '../actions/login';
 import { LoginContext } from '../contexts/LoginContext';
 import '../css/screens/SignInScreen.css';
 import { setRefreshTimeOut } from '../util/timeOutTokenRefresh';
@@ -16,7 +16,9 @@ const SignInScreen = () => {
 
     useEffect(() => {
         if (loginState.jwtoken) history.push('/lists');
-    })
+
+        return () => resetLoginError(loginDispatch);
+    },[])
 
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
