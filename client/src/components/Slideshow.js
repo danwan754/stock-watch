@@ -56,7 +56,8 @@ function Slideshow() {
           >
             <div
               className="slide2"
-              style={{ backgroundImage: `url(${slide})`}}
+              // style={{ backgroundImage: `url(${slide})`}}
+              style={{ backgroundImage: `url('/slide-edit.png')`}}
               onMouseOver={resetTimeout}
               onMouseOut={startTimeout}
             ></div>
